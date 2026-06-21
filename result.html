@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Result | PYQ Quiz Master</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.result-container{
+    max-width:800px;
+    margin:30px auto;
+    padding:20px;
+}
+.result-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+    margin-bottom:25px;
+}
+.result-card{
+    padding:20px;
+    border-radius:12px;
+    background:#fff;
+    text-align:center;
+    border:1px solid #e0e0e0;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+.result-card h2{
+    margin:0 0 8px;
+    font-size:2rem;
+    color:#333;
+}
+.result-card p{
+    margin:0;
+    color:#666;
+    font-size:0.9rem;
+}
+.result-progress{
+    margin:20px 0;
+    height:22px;
+    background:#e0e0e0;
+    border-radius:30px;
+    overflow:hidden;
+}
+.result-progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#4caf50,#66bb6a);
+    border-radius:30px;
+    transition:width 0.8s ease;
+}
+.result-buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:20px;
+}
+.result-buttons button{
+    padding:12px 24px;
+    border:none;
+    cursor:pointer;
+    border-radius:8px;
+    font-size:15px;
+    font-weight:600;
+}
+.btn-review{ background:#2196f3; color:white; }
+.btn-retry{  background:#4caf50; color:white; }
+.btn-home{   background:#555;    color:white; }
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">🎯 PYQ Quiz Master</div>
+    <a href="index.html" class="btn">🏠 Home</a>
+</header>
+
+<div class="result-container">
+
+    <h1 style="text-align:center;margin-bottom:25px;">📊 Quiz Result</h1>
+
+    <div class="result-grid">
+        <div class="result-card">
+            <h2 id="score">0</h2>
+            <p>Score</p>
+        </div>
+        <div class="result-card">
+            <h2 id="correct" style="color:#4caf50;">0</h2>
+            <p>Correct ✅</p>
+        </div>
+        <div class="result-card">
+            <h2 id="wrong" style="color:#f44336;">0</h2>
+            <p>Wrong ❌</p>
+        </div>
+        <div class="result-card">
+            <h2 id="unattempted" style="color:#ff9800;">0</h2>
+            <p>Skipped ⏭</p>
+        </div>
+        <div class="result-card">
+            <h2 id="percentage" style="color:#2196f3;">0%</h2>
+            <p>Percentage</p>
+        </div>
+    </div>
+
+    <div class="result-progress">
+        <div class="result-progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="result-buttons">
+        <button class="btn-review" id="reviewBtn">📝 Review Answers</button>
+        <button class="btn-retry"  id="retryBtn">🔁 Try Again</button>
+        <button class="btn-home"   id="homeBtn">🏠 Home</button>
+    </div>
+
+</div>
+
+<script src="js/result.js"></script>
+
+</body>
+</html>
