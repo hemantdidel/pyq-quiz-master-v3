@@ -70,24 +70,33 @@ fetch(`data/${category}/${exam}/exams.json`)
    SHOW CARDS
 =========================== */
 
-function showCards(data) {
+function showCards(data){
 
-    let html = "";
+    let html="";
 
-    data.forEach(item => {
+    data.forEach(item=>{
 
-        html += `
+        const title =
+            item.title || item.name || "Untitled";
+
+        const description =
+            item.description ||
+            item.folder.replace(/-/g," ").toUpperCase();
+
+        html+=`
 
         <div class="card">
 
-            <h2>${item.title}</h2>
+            <h2>${title}</h2>
 
-            <p>${item.folder.replace(/-/g, " ").toUpperCase()}</p>
+            <p>${description}</p>
 
             <a
-                class="btn"
-                href="tests.html?category=${category}&exam=${exam}&post=${item.folder}">
-                Open
+            class="btn"
+            href="tests.html?category=${category}&exam=${exam}&post=${item.folder}">
+
+            Open
+
             </a>
 
         </div>
@@ -96,7 +105,7 @@ function showCards(data) {
 
     });
 
-    examContainer.innerHTML = html;
+    examContainer.innerHTML=html;
 
 }
 
@@ -112,13 +121,16 @@ if (searchInput) {
             .trim()
             .toLowerCase();
 
-        const filtered = list.filter(item =>
+        const filtered=list.filter(item=>{
 
-            item.title.toLowerCase().includes(keyword)
+    const title =
+        item.title || item.name || "";
 
-        );
+    return title.toLowerCase().includes(keyword);
 
-        showCards(filtered);
+});
+
+showCards(filtered);
 
     });
 
