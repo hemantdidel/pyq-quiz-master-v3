@@ -409,3 +409,186 @@ margin-top:10px;
 }
 
 }
+/* =====================================
+   MOBILE QUIZ OPTIMIZATION
+===================================== */
+
+@media (max-width:768px){
+
+/* Website Header Hide */
+
+.quiz-header{
+
+display:none;
+
+}
+
+/* Quiz Container */
+
+.quiz-container{
+
+max-width:100%;
+
+margin:0;
+
+padding:8px;
+
+padding-bottom:80px;
+
+}
+
+/* Top */
+
+.quiz-top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:5px 0;
+
+margin-bottom:8px;
+
+gap:10px;
+
+}
+
+/* Title */
+
+#quizTitle{
+
+font-size:16px;
+
+font-weight:600;
+
+}
+
+/* Timer */
+
+#timer{
+
+font-size:14px;
+
+padding:6px 10px;
+
+}
+
+/* Progress */
+
+.progress{
+
+height:6px;
+
+margin-bottom:8px;
+
+}
+
+/* Question Number */
+
+#questionNumber{
+
+font-size:14px;
+
+margin-bottom:6px;
+
+}
+
+/* Question */
+
+#questionBox{
+
+padding:12px;
+
+font-size:18px;
+
+margin-bottom:10px;
+
+}
+
+/* Options */
+
+#optionsBox{
+
+gap:8px;
+
+margin-bottom:10px;
+
+}
+
+.option{
+
+padding:10px;
+
+font-size:15px;
+
+}
+
+/* Palette Hide */
+
+#palette{
+
+display:none;
+
+}
+
+/* Palette Heading Hide */
+
+h3{
+
+display:none;
+
+}
+
+/* Submit */
+
+#submitBtn{
+
+padding:12px;
+
+font-size:15px;
+
+margin-top:10px;
+
+}
+
+/* Bottom Navigation */
+
+.navigation{
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+right:0;
+
+background:#ffffff;
+
+padding:8px;
+
+display:flex;
+
+gap:8px;
+
+z-index:9999;
+
+border-top:1px solid #ddd;
+
+margin:0;
+
+}
+
+.navigation button{
+
+flex:1;
+
+padding:12px;
+
+font-size:15px;
+
+}
+
+}
