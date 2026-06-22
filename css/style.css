@@ -400,3 +400,80 @@ padding:20px 15px;
 }
 
 }
+/* ==========================================
+   FOOTER
+========================================== */
+
+html,
+body{
+
+    min-height:100%;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+
+}
+
+body{
+
+    background:#f5f7fb;
+
+}
+
+main,
+.container,
+.quiz-container,
+.page-container{
+
+    flex:1;
+
+}
+
+.footer{
+
+    margin-top:auto;
+    width:100%;
+    background:#111827;
+    color:#ffffff;
+    text-align:center;
+    padding:18px 15px;
+    font-size:15px;
+    line-height:1.8;
+
+}
+
+.footer strong{
+
+    color:#3b82f6;
+
+}
+
+.footer p{
+
+    margin:4px 0;
+
+}
+
+.footer a{
+
+    color:#60a5fa;
+    text-decoration:none;
+
+}
+
+.footer a:hover{
+
+    text-decoration:underline;
+
+}
+
+@media(max-width:768px){
+
+.footer{
+
+    font-size:13px;
+    padding:15px 10px;
+
+}
+
+}
