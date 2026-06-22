@@ -36,7 +36,8 @@ const DOM = {
     palette:        $("palette"),
     prevBtn:        $("prevBtn"),
     nextBtn:        $("nextBtn"),
-    submitBtn:      $("submitBtn")
+    submitBtn:      $("submitBtn"),
+    paletteToggle:  $("paletteToggle")
 };
 
 /* ==========================================
@@ -54,7 +55,7 @@ function loadURL() {
     }
 
     QuizApp.dataPath  = file;
-    QuizApp.storageKey = "quiz_" + btoa(file);
+    QuizApp.storageKey = "quiz_" + encodeURIComponent(file);
     return true;
 }
 
@@ -267,7 +268,10 @@ function updatePalette() {
 
 function updateProgress() {
     const answered = QuizApp.answers.filter(x => x !== null).length;
-    const percent  = (answered / QuizApp.data.length) * 100;
+    const percent =
+    QuizApp.data.length
+        ? (answered / QuizApp.data.length) * 100
+        : 0;
     DOM.progress.style.width = percent + "%";
 }
 
@@ -276,6 +280,7 @@ function updateProgress() {
 ========================================== */
 
 function bindEvents() {
+
     DOM.prevBtn.addEventListener("click", () => {
         if (QuizApp.current > 0) {
             QuizApp.current--;
@@ -289,8 +294,18 @@ function bindEvents() {
             renderQuestion();
         }
     });
-}
 
+    if (DOM.paletteToggle) {
+
+        DOM.paletteToggle.addEventListener("click", () => {
+
+            DOM.palette.classList.toggle("show");
+
+        });
+
+    }
+
+}
 /* ==========================================
    KEYBOARD NAVIGATION
 ========================================== */
