@@ -329,17 +329,54 @@ margin-bottom:8px;
    FOOTER
 ========================= */
 
-footer{
-
-margin-top:60px;
-
-padding:25px;
+.footer{
 
 background:#111827;
-
-color:white;
+color:#ffffff;
 
 text-align:center;
+
+padding:25px 15px;
+
+}
+
+.footer p{
+
+margin:8px 0;
+
+}
+
+.footer strong{
+
+color:#3b82f6;
+
+}
+
+.footer-links{
+
+margin:15px 0;
+
+}
+
+.footer-links a{
+
+color:#ffffff;
+
+text-decoration:none;
+
+margin:0 8px;
+
+font-size:15px;
+
+transition:.3s;
+
+}
+
+.footer-links a:hover{
+
+color:#60a5fa;
+
+text-decoration:underline;
 
 }
 
@@ -396,6 +433,30 @@ padding:12px;
 .container{
 
 padding:20px 15px;
+
+}
+
+/* Footer Mobile */
+
+.footer{
+
+padding:20px 10px;
+
+}
+
+.footer-links{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.footer-links a{
+
+margin:0;
 
 }
 
