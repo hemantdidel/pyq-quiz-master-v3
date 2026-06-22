@@ -1,90 +1,125 @@
+"use strict";
+
+/* ===========================
+   URL PARAMS
+=========================== */
+
 const params = new URLSearchParams(window.location.search);
 
 const category = params.get("category");
-
 const exam = params.get("exam");
 
+/* ===========================
+   DOM
+=========================== */
+
 const pageTitle = document.getElementById("pageTitle");
-
 const examContainer = document.getElementById("examContainer");
-
 const searchInput = document.getElementById("searchInput");
 
-pageTitle.innerHTML =
-exam.toUpperCase();
+/* ===========================
+   PAGE TITLE
+=========================== */
+
+pageTitle.textContent = exam
+    ? exam.replace(/-/g, " ").toUpperCase()
+    : "EXAMS";
+
+/* ===========================
+   DATA
+=========================== */
 
 let list = [];
 
+/* ===========================
+   LOAD EXAMS
+=========================== */
+
 fetch(`data/${category}/${exam}/exams.json`)
+    .then(response => {
 
-.then(response=>response.json())
+        if (!response.ok) {
+            throw new Error("Unable to load data");
+        }
 
-.then(data=>{
+        return response.json();
 
-list=data;
+    })
 
-showCards(list);
+    .then(data => {
 
-})
+        list = data;
+        showCards(list);
 
-.catch(()=>{
+    })
 
-examContainer.innerHTML="<h2>No Data Found</h2>";
+    .catch(error => {
 
-});
+        console.log(error);
 
-function showCards(data){
+        examContainer.innerHTML = `
+            <div class="card">
+                <h2>No Data Found</h2>
+                <p>Exam list is not available.</p>
+            </div>
+        `;
 
-let html="";
+    });
 
-data.forEach(item=>{
+/* ===========================
+   SHOW CARDS
+=========================== */
 
-html+=`
+function showCards(data) {
 
-<div class="card">
+    let html = "";
 
-<h2>
+    data.forEach(item => {
 
-${item.name}
+        html += `
 
-</h2>
+        <div class="card">
 
-<p>
+            <h2>${item.title}</h2>
 
-${item.description}
+            <p>${item.folder.replace(/-/g, " ").toUpperCase()}</p>
 
-</p>
+            <a
+                class="btn"
+                href="tests.html?category=${category}&exam=${exam}&post=${item.folder}">
+                Open
+            </a>
 
-<a
+        </div>
 
-class="btn"
+        `;
 
-href="tests.html?category=${category}&exam=${exam}&post=${item.folder}">
+    });
 
-Open
-
-</a>
-
-</div>
-
-`;
-
-});
-
-examContainer.innerHTML=html;
+    examContainer.innerHTML = html;
 
 }
 
-searchInput.addEventListener("input",()=>{
+/* ===========================
+   SEARCH
+=========================== */
 
-const keyword=searchInput.value.toLowerCase();
+if (searchInput) {
 
-const filtered=list.filter(item=>
+    searchInput.addEventListener("input", () => {
 
-item.name.toLowerCase().includes(keyword)
+        const keyword = searchInput.value
+            .trim()
+            .toLowerCase();
 
-);
+        const filtered = list.filter(item =>
 
-showCards(filtered);
+            item.title.toLowerCase().includes(keyword)
 
-});
+        );
+
+        showCards(filtered);
+
+    });
+
+}
