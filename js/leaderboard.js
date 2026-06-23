@@ -65,15 +65,13 @@ async function loadLeaderboard() {
 
     const q = query(
 
-        collection(db, "leaderboard"),
+    collection(db, "leaderboard"),
 
-        orderBy("score", "desc"),
+    orderBy("score", "desc"),
 
-        orderBy("percentage", "desc"),
+    limit(50)
 
-        limit(50)
-
-    );
+);
 
     const snapshot = await getDocs(q);
 
