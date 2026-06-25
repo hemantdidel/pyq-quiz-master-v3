@@ -442,20 +442,41 @@ DOM.submitBtn.addEventListener("click", () => {
 
 window.addEventListener("beforeunload", () => saveState());
 
-/* ==========================================
-   START
-========================================== */
-
-window.addEventListener("load", () => {
-    if (!loadURL()) return;
-    loadState();
-    loadQuiz();
-});
 
 /* ==========================================
    ERROR HANDLER
 ========================================== */
+const startBtn = document.getElementById("startQuizBtn");
 
+if (startBtn) {
+
+    startBtn.addEventListener("click", () => {
+
+        const nameInput =
+            document.getElementById("studentNameInput");
+
+        const name = nameInput.value.trim();
+
+        if (!name) {
+            alert("कृपया अपना नाम दर्ज करें");
+            return;
+        }
+
+        localStorage.setItem("player_name", name);
+
+        document.getElementById("nameModal").style.display = "none";
+
+        document.getElementById("quizContainer").style.display = "block";
+
+        if (!loadURL()) return;
+
+        loadState();
+
+        loadQuiz();
+
+    });
+
+}
 window.addEventListener("error", (event) => {
     console.error("Global error:", event.error);
 });
