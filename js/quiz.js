@@ -464,14 +464,12 @@ if (startBtn) {
 
         localStorage.setItem("player_name", name);
 
-        document.getElementById("nameModal").style.display = "none";
+        document.getElementById("nameModal").remove();
 
         const quiz =
             document.getElementById("quizContainer");
 
         quiz.style.display = "block";
-
-        alert("Quiz Starting...");
 
         if (!loadURL()) return;
 
