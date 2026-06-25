@@ -452,10 +452,10 @@ if (startBtn) {
 
     startBtn.addEventListener("click", () => {
 
-        const nameInput =
-            document.getElementById("studentNameInput");
-
-        const name = nameInput.value.trim();
+        const name =
+            document.getElementById("studentNameInput")
+            .value
+            .trim();
 
         if (!name) {
             alert("कृपया अपना नाम दर्ज करें");
@@ -466,7 +466,12 @@ if (startBtn) {
 
         document.getElementById("nameModal").style.display = "none";
 
-        document.getElementById("quizContainer").style.display = "block";
+        const quiz =
+            document.getElementById("quizContainer");
+
+        quiz.style.display = "block";
+
+        alert("Quiz Starting...");
 
         if (!loadURL()) return;
 
