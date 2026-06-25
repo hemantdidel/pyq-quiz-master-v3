@@ -3,32 +3,6 @@
    Quiz Engine - Clean Fixed Version
 ========================================== */
 
-"use strict";
-const startBtn = document.getElementById("startQuizBtn");
-const nameInput = document.getElementById("studentNameInput");
-
-if (startBtn) {
-
-    startBtn.addEventListener("click", () => {
-
-        const name = nameInput.value.trim();
-
-        if (!name) {
-            alert("कृपया अपना नाम दर्ज करें");
-            return;
-        }
-
-        localStorage.setItem("player_name", name);
-
-        const card = document.querySelector(".name-card");
-
-        if (card) {
-            card.style.display = "none";
-        }
-
-    });
-
-}
 /* ==========================================
    CONFIG
 ========================================== */
