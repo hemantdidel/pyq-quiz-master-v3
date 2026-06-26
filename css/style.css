@@ -482,3 +482,38 @@ margin:0;
 }
 
 }
+/* ===========================
+   Subject Wise Cards
+=========================== */
+
+.subject-section{
+    margin:40px 0;
+}
+
+.subject-grid,
+#subjectContainer{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+#topicContainer{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+.card{
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.card h3{
+    margin-bottom:15px;
+}
