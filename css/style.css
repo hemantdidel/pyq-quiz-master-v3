@@ -532,3 +532,34 @@ margin:0;
 .subject-section .grid{
     margin-top:0;
 }
+/* ===========================
+   Subject Hub
+=========================== */
+
+.subject-section{
+    margin:70px 0;
+}
+
+.subject-card{
+    max-width:800px;
+    margin:auto;
+    padding:40px;
+    text-align:center;
+}
+
+.subject-card h2{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.subject-card p{
+    font-size:18px;
+    color:#666;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.subject-card .btn{
+    font-size:18px;
+    padding:14px 30px;
+}
