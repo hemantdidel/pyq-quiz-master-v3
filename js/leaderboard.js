@@ -4,127 +4,229 @@ import {
     addDoc,
     getDocs,
     query,
+    where,
     orderBy,
     limit,
-    serverTimestamp
+    updateDoc,
+    doc,
+    serverTimestamp,
+    onSnapshot
 } from "./firebase.js";
 
-const saveBtn = document.getElementById("saveScoreBtn");
-const playerName = localStorage.getItem("player_name") || "Unknown";
-const playerNameText = document.getElementById("playerNameText");
+/* ==========================================
+   DOM
+========================================== */
 
-if (playerNameText) {
-    playerNameText.textContent = playerName;
-}
+const saveBtn = document.getElementById("saveScoreBtn");
 const leaderboardList = document.getElementById("leaderboardList");
 const yourRank = document.getElementById("yourRank");
+const playerNameText = document.getElementById("playerNameText");
+
+/* ==========================================
+   RESULT
+========================================== */
 
 const result = JSON.parse(localStorage.getItem("quiz_result"));
 
 if (!result) {
-    leaderboardList.innerHTML = "Result Not Found";
+    window.location.href = "index.html";
 }
 
-async function saveScore() {
+playerNameText.textContent = result.playerName;
 
-    const name = playerName;
+/* ==========================================
+   SAVE / UPDATE SCORE
+========================================== */
+
+async function saveScore() {
 
     saveBtn.disabled = true;
     saveBtn.innerText = "Saving...";
 
-    await addDoc(collection(db, "leaderboard"), {
-
-        name: name,
-
-        score: result.score,
-
-        total: result.total,
-
-        percentage: Number(
-            ((result.score / result.total) * 100).toFixed(1)
-        ),
-
-        createdAt: serverTimestamp()
-
-    });
-
-    localStorage.setItem("student_name", playerName);
-
-    saveBtn.innerText = "Saved ✓";
-
-    loadLeaderboard();
-
-}
-
-async function loadLeaderboard() {
-
-    leaderboardList.innerHTML = "Loading...";
+    const leaderboardRef = collection(db, "leaderboard");
 
     const q = query(
-
-    collection(db, "leaderboard"),
-
-    orderBy("score", "desc"),
-
-    limit(50)
-
-);
+        leaderboardRef,
+        where("playerId", "==", result.playerId),
+        where("testId", "==", result.testId)
+    );
 
     const snapshot = await getDocs(q);
 
-    let html = "";
+    if (snapshot.empty) {
 
-    let rank = 1;
+        // New Record
 
-    snapshot.forEach(doc => {
+        await addDoc(leaderboardRef, {
 
-        const data = doc.data();
+            playerId: result.playerId,
+            name: result.playerName,
 
-        html += `
+            testId: result.testId,
 
-        <div style="
-        display:flex;
-        justify-content:space-between;
-        padding:10px;
-        border-bottom:1px solid #eee;
-        ">
+            score: result.score,
+            total: result.total,
 
-        <span>
+            percentage:
+                Number(
+                    (
+                        result.score /
+                        result.total *
+                        100
+                    ).toFixed(1)
+                ),
 
-        #${rank}
+            timeTaken: result.timeTaken,
 
-        ${data.name}
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp()
 
-        </span>
+        });
 
-        <span>
+    } else {
 
-        ${data.score}/${data.total}
+        // Existing Record
 
-        </span>
+        const oldDoc = snapshot.docs[0];
 
-        </div>
+        const oldData = oldDoc.data();
 
-        `;
+        const betterScore =
+            result.score > oldData.score;
 
-        if (
-    localStorage.getItem("player_name") === data.name
-) {
+        const sameScoreBetterTime =
+            result.score === oldData.score &&
+            result.timeTaken < oldData.timeTaken;
 
-            yourRank.innerHTML =
+        if (betterScore || sameScoreBetterTime) {
 
-                "🏆 Your Rank : #" + rank;
+            await updateDoc(doc(db,
+                "leaderboard",
+                oldDoc.id
+            ), {
+    playerId: result.playerId,
+    testId: result.testId,
+
+    name: result.playerName,
+
+    score: result.score,
+    total: result.total,
+
+    percentage: Number(
+        ((result.score / result.total) * 100).toFixed(1)
+    ),
+
+    timeTaken: result.timeTaken,
+
+    updatedAt: serverTimestamp()
+});
 
         }
 
-        rank++;
+    }
+
+    saveBtn.innerText = "Saved ✓";
+    saveBtn.disabled = true;
+
+}
+/* ==========================================
+   LIVE LEADERBOARD
+========================================== */
+
+function loadLeaderboard() {
+
+    const leaderboardRef = collection(db, "leaderboard");
+
+    const q = query(
+        leaderboardRef,
+        orderBy("score", "desc"),
+        orderBy("timeTaken", "asc"),
+        limit(100)
+    );
+
+    onSnapshot(q, (snapshot) => {
+
+        let html = "";
+
+        let rank = 1;
+
+        let found = false;
+
+        snapshot.forEach((item) => {
+
+            const data = item.data();
+
+            let medal = "";
+
+            if (rank === 1) medal = "🥇";
+            else if (rank === 2) medal = "🥈";
+            else if (rank === 3) medal = "🥉";
+
+            html += `
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    padding:12px;
+                    border-bottom:1px solid #eee;
+                ">
+
+                    <div>
+                        <strong>${medal} #${rank}</strong>
+                        &nbsp;
+                        ${data.name}
+                    </div>
+
+                    <div>
+                        ${data.score}/${data.total}
+                        <br>
+                        <small>${data.percentage}%</small>
+                    </div>
+
+                </div>
+            `;
+
+            if (
+                data.playerId === result.playerId &&
+                data.testId === result.testId
+            ) {
+
+                yourRank.innerHTML =
+                    `🏆 Your Rank : #${rank}`;
+
+                found = true;
+
+            }
+
+            rank++;
+
+        });
+
+        if (!found) {
+            yourRank.innerHTML = "Rank will appear after saving.";
+        }
+
+        leaderboardList.innerHTML =
+            html || "No Records Found.";
 
     });
 
-    leaderboardList.innerHTML = html;
+}
+/* ==========================================
+   AUTO SAVE + INIT
+========================================== */
 
+// Save बटन क्लिक
+if (saveBtn) {
+    saveBtn.addEventListener("click", async () => {
+        try {
+            await saveScore();
+        } catch (error) {
+            console.error(error);
+            alert("Score Save करने में समस्या आई।");
+        }
+    });
 }
 
-saveBtn.addEventListener("click", saveScore);
-
+// Leaderboard हमेशा Live रहेगा
 loadLeaderboard();
