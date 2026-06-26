@@ -2,7 +2,26 @@
    PYQ Quiz Master
    Quiz Engine - Clean Fixed Version
 ========================================== */
+/* ==========================================
+   PLAYER ID
+========================================== */
 
+function getPlayerId() {
+
+    let playerId = localStorage.getItem("player_id");
+
+    if (!playerId) {
+
+        playerId =
+            "PID_" +
+            Date.now().toString(36) +
+            Math.random().toString(36).substring(2, 10);
+
+        localStorage.setItem("player_id", playerId);
+    }
+
+    return playerId;
+}
 /* ==========================================
    CONFIG
 ========================================== */
@@ -395,9 +414,13 @@ function submitQuiz() {
     attempted: attempted,
     answers: QuizApp.answers,
     questions: QuizApp.data,
+
     timeLeft: QuizApp.remainingTime,
+    timeTaken: QuizApp.totalTime - QuizApp.remainingTime,
+
     submittedAt: Date.now(),
 
+    playerId: getPlayerId(),
     playerName: localStorage.getItem("player_name") || "Unknown",
 
     testId: QuizApp.dataPath
