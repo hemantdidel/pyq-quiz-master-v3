@@ -10,7 +10,12 @@ import {
 } from "./firebase.js";
 
 const saveBtn = document.getElementById("saveScoreBtn");
-const playerName = document.getElementById("playerName");
+const playerName = localStorage.getItem("player_name") || "Unknown";
+const playerNameText = document.getElementById("playerNameText");
+
+if (playerNameText) {
+    playerNameText.textContent = playerName;
+}
 const leaderboardList = document.getElementById("leaderboardList");
 const yourRank = document.getElementById("yourRank");
 
@@ -22,15 +27,7 @@ if (!result) {
 
 async function saveScore() {
 
-    let name = playerName.value.trim();
-
-    if (name === "") {
-
-        alert("Please Enter Your Name");
-
-        return;
-
-    }
+    const name = playerName;
 
     saveBtn.disabled = true;
     saveBtn.innerText = "Saving...";
@@ -51,7 +48,7 @@ async function saveScore() {
 
     });
 
-    localStorage.setItem("student_name", name);
+    localStorage.setItem("student_name", playerName);
 
     saveBtn.innerText = "Saved ✓";
 
@@ -111,10 +108,8 @@ async function loadLeaderboard() {
         `;
 
         if (
-
-            localStorage.getItem("student_name") == data.name
-
-        ) {
+    localStorage.getItem("player_name") === data.name
+) {
 
             yourRank.innerHTML =
 
