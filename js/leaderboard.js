@@ -217,16 +217,18 @@ function loadLeaderboard() {
 ========================================== */
 
 // Save बटन क्लिक
-if (saveBtn) {
-    saveBtn.addEventListener("click", async () => {
-        try {
-            await saveScore();
-        } catch (error) {
-            console.error(error);
-            alert("Score Save करने में समस्या आई।");
-        }
-    });
-}
+(async () => {
 
-// Leaderboard हमेशा Live रहेगा
-loadLeaderboard();
+    try {
+
+        await saveScore();
+
+        loadLeaderboard();
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+})();
