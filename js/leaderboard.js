@@ -17,7 +17,6 @@ import {
    DOM
 ========================================== */
 
-const saveBtn = document.getElementById("saveScoreBtn");
 const leaderboardList = document.getElementById("leaderboardList");
 const yourRank = document.getElementById("yourRank");
 const playerNameText = document.getElementById("playerNameText");
@@ -39,10 +38,6 @@ playerNameText.textContent = result.playerName;
 ========================================== */
 
 async function saveScore() {
-    if (saveBtn) {
-    saveBtn.disabled = true;
-    saveBtn.innerText = "Saving...";
-}
 
     const leaderboardRef = collection(db, "leaderboard");
 
@@ -125,11 +120,6 @@ async function saveScore() {
         }
 
     }
-    
-    if (saveBtn) {
-    saveBtn.innerText = "Saved ✓";
-    saveBtn.disabled = true;
-}
 
 }
 /* ==========================================
@@ -222,23 +212,14 @@ function loadLeaderboard() {
 // Save बटन क्लिक
 function initLeaderboard() {
 
-    const result = JSON.parse(localStorage.getItem("quiz_result"));
-
-    if (!result) {
-        console.error("No quiz result found");
-        return;
-    }
-
-    window.addEventListener("load", async () => {
-
-        try {
-            await saveScore();
+    saveScore()
+        .then(() => {
             loadLeaderboard();
-        } catch (err) {
+        })
+        .catch((err) => {
             console.error(err);
-        }
+        });
 
-    });
 }
 
 initLeaderboard();
