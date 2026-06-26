@@ -44,9 +44,6 @@ async function saveScore() {
     saveBtn.innerText = "Saving...";
 }
 
-    saveBtn.disabled = true;
-    saveBtn.innerText = "Saving...";
-
     const leaderboardRef = collection(db, "leaderboard");
 
     const q = query(
@@ -128,9 +125,6 @@ async function saveScore() {
         }
 
     }
-
-    saveBtn.innerText = "Saved ✓";
-    saveBtn.disabled = true;
     
     if (saveBtn) {
     saveBtn.innerText = "Saved ✓";
@@ -235,16 +229,16 @@ function initLeaderboard() {
         return;
     }
 
-    setTimeout(async () => {
+    window.addEventListener("load", async () => {
 
         try {
             await saveScore();
             loadLeaderboard();
         } catch (err) {
-            console.error("Error:", err);
+            console.error(err);
         }
 
-    }, 500);
+    });
 }
 
 initLeaderboard();
