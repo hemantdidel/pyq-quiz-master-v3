@@ -39,6 +39,10 @@ playerNameText.textContent = result.playerName;
 ========================================== */
 
 async function saveScore() {
+    if (saveBtn) {
+    saveBtn.disabled = true;
+    saveBtn.innerText = "Saving...";
+}
 
     saveBtn.disabled = true;
     saveBtn.innerText = "Saving...";
@@ -127,6 +131,11 @@ async function saveScore() {
 
     saveBtn.innerText = "Saved ✓";
     saveBtn.disabled = true;
+    
+    if (saveBtn) {
+    saveBtn.innerText = "Saved ✓";
+    saveBtn.disabled = true;
+}
 
 }
 /* ==========================================
@@ -226,13 +235,16 @@ function initLeaderboard() {
         return;
     }
 
-    saveScore()
-        .then(() => {
+    setTimeout(async () => {
+
+        try {
+            await saveScore();
             loadLeaderboard();
-        })
-        .catch((err) => {
-            console.error("Save failed:", err);
-        });
+        } catch (err) {
+            console.error("Error:", err);
+        }
+
+    }, 500);
 }
 
 initLeaderboard();
