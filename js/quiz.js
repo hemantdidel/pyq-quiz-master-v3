@@ -390,14 +390,21 @@ function submitQuiz() {
     const attempted = QuizApp.answers.filter(x => x !== null).length;
 
     const result = {
-        total:       QuizApp.data.length,
-        score:       score,
-        attempted:   attempted,
-        answers:     QuizApp.answers,
-        questions:   QuizApp.data,
-        timeLeft:    QuizApp.remainingTime,
-        submittedAt: Date.now()
-    };
+    total: QuizApp.data.length,
+    score: score,
+    attempted: attempted,
+    answers: QuizApp.answers,
+    questions: QuizApp.data,
+    timeLeft: QuizApp.remainingTime,
+    submittedAt: Date.now(),
+
+    playerName: localStorage.getItem("player_name") || "Unknown",
+
+    testId: QuizApp.dataPath
+        .replace("data/", "")
+        .replace(".json", "")
+        .replace(/\//g, "_")
+};
 
     localStorage.setItem("quiz_result", JSON.stringify(result));
     localStorage.removeItem(QuizApp.storageKey);
