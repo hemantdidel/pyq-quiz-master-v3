@@ -60,7 +60,7 @@ async function saveScore() {
         await addDoc(leaderboardRef, {
 
             playerId: result.playerId,
-            name: result.playerName,
+            name: result.playerName || localStorage.getItem("player_name") || "Unknown",
 
             testId: result.testId,
 
@@ -107,7 +107,7 @@ async function saveScore() {
     playerId: result.playerId,
     testId: result.testId,
 
-    name: result.playerName,
+    name: result.playerName || localStorage.getItem("player_name") || "Unknown",
 
     score: result.score,
     total: result.total,
@@ -217,18 +217,22 @@ function loadLeaderboard() {
 ========================================== */
 
 // Save बटन क्लिक
-(async () => {
+function initLeaderboard() {
 
-    try {
+    const result = JSON.parse(localStorage.getItem("quiz_result"));
 
-        await saveScore();
-
-        loadLeaderboard();
-
-    } catch (error) {
-
-        console.error(error);
-
+    if (!result) {
+        console.error("No quiz result found");
+        return;
     }
 
-})();
+    saveScore()
+        .then(() => {
+            loadLeaderboard();
+        })
+        .catch((err) => {
+            console.error("Save failed:", err);
+        });
+}
+
+initLeaderboard();
