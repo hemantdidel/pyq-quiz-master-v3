@@ -1,58 +1,25 @@
-const subjects = [
+const container = document.getElementById("subjectContainer");
 
-{
-title:"Rajasthan GK",
-icon:"🏰",
-folder:"rajasthan-gk"
-},
+fetch("data/subjects.json")
+.then(res => res.json())
+.then(subjects => {
 
-{
-title:"India GK",
-icon:"🇮🇳",
-folder:"india-gk"
-},
+let html = "";
 
-{
-title:"Maths",
-icon:"🧮",
-folder:"maths"
-},
+subjects.forEach(subject => {
 
-{
-title:"Reasoning",
-icon:"🧠",
-folder:"reasoning"
-},
-
-{
-title:"Science",
-icon:"🔬",
-folder:"science"
-},
-
-{
-title:"Computer",
-icon:"💻",
-folder:"computer"
-}
-
-];
-
-const container=document.getElementById("subjectContainer");
-
-let html="";
-
-subjects.forEach(item=>{
-
-html+=`
+html += `
 
 <div class="card">
 
-<h2>${item.icon} ${item.title}</h2>
+<h2>${subject.icon} ${subject.title}</h2>
 
-<a class="btn"
-href="topics.html?subject=${item.folder}">
+<a
+class="btn"
+href="topics.html?subject=${subject.folder}">
+
 Open
+
 </a>
 
 </div>
@@ -61,4 +28,13 @@ Open
 
 });
 
-container.innerHTML=html;
+container.innerHTML = html;
+
+})
+.catch(() => {
+
+container.innerHTML = `
+<h2>Subjects Not Found</h2>
+`;
+
+});
