@@ -130,12 +130,16 @@ function loadLeaderboard() {
 
     const leaderboardRef = collection(db, "leaderboard");
 
-    const q = query(
-        leaderboardRef,
-        orderBy("score", "desc"),
-        orderBy("timeTaken", "asc"),
-        limit(100)
-    );
+const q = query(
+    leaderboardRef,
+
+    where("testId", "==", result.testId),
+
+    orderBy("score", "desc"),
+    orderBy("timeTaken", "asc"),
+
+    limit(100)
+);
 
     onSnapshot(q, (snapshot) => {
 
