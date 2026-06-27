@@ -1,6 +1,4 @@
 User-agent: *
-
 Allow: /
 
-Sitemap:
-https://hemantdidel.github.io/pyq-quiz-master-v3/sitemap.xml
+Sitemap: https://hemantdidel.github.io/pyq-quiz-master-v3/sitemap.xml
