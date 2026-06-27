@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<urlset
-xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<url>
-<loc>https://hemantdidel.github.io/pyq-quiz-master-v3/</loc>
-</url>
+  <url>
+    <loc>https://hemantdidel.github.io/pyq-quiz-master-v3/</loc>
+  </url>
 
-<url>
-<loc>https://hemantdidel.github.io/pyq-quiz-master-v3/subjects.html</loc>
-</url>
+  <url>
+    <loc>https://hemantdidel.github.io/pyq-quiz-master-v3/subjects.html</loc>
+  </url>
 
-<url>
-<loc>https://hemantdidel.github.io/pyq-quiz-master-v3/about.html</loc>
-</url>
+  <url>
+    <loc>https://hemantdidel.github.io/pyq-quiz-master-v3/about.html</loc>
+  </url>
 
-<url>
-<loc>https://hemantdidel.github.io/pyq-quiz-master-v3/contact.html</loc>
-</url>
+  <url>
+    <loc>https://hemantdidel.github.io/pyq-quiz-master-v3/contact.html</loc>
+  </url>
 
-<url>
-<loc>https://hemantdidel.github.io/pyq-quiz-master-v3/privacy-policy.html</loc>
-</url>
+  <url>
+    <loc>https://hemantdidel.github.io/pyq-quiz-master-v3/privacy-policy.html</loc>
+  </url>
 
-<url>
-<loc>https://hemantdidel.github.io/pyq-quiz-master-v3/terms.html</loc>
-</url>
+  <url>
+    <loc>https://hemantdidel.github.io/pyq-quiz-master-v3/terms.html</loc>
+  </url>
 
-<url>
-<loc>https://hemantdidel.github.io/pyq-quiz-master-v3/disclaimer.html</loc>
-</url>
+  <url>
+    <loc>https://hemantdidel.github.io/pyq-quiz-master-v3/disclaimer.html</loc>
+  </url>
 
 </urlset>
