@@ -3,7 +3,56 @@ const params = new URLSearchParams(window.location.search);
 const category = params.get("category");
 const exam = params.get("exam");
 const post = params.get("post");
+// ===========================
+// Dynamic SEO
+// ===========================
 
+const examName = exam
+    ? exam.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())
+    : "";
+
+const postName = post
+    ? post.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())
+    : "Practice Sets";
+
+document.title =
+postName + " " + examName + " Mock Tests | PYQ Quiz Master";
+
+document.querySelector('meta[name="description"]')
+.setAttribute(
+"content",
+"Practice " +
+postName +
+" " +
+examName +
+" previous year questions, online mock tests, timer, leaderboard and detailed solutions for free."
+);
+
+document.querySelector('meta[name="keywords"]')
+.setAttribute(
+"content",
+postName +
+", " +
+examName +
+", PYQ, Mock Test, Previous Year Questions, MCQ"
+);
+
+const canonical =
+document.querySelector('link[rel="canonical"]');
+
+if(canonical){
+
+canonical.href =
+window.location.origin +
+window.location.pathname +
+"?category=" +
+category +
+"&exam=" +
+exam +
+"&post=" +
+post;
+
+}
 const testContainer =
 document.getElementById("testContainer");
 
