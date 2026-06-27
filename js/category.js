@@ -2,6 +2,41 @@ const params = new URLSearchParams(window.location.search);
 
 const category = params.get("category");
 
+// ==========================
+// Dynamic SEO
+// ==========================
+
+let pageName =
+category === "central"
+? "Central Government Exams"
+: "Rajasthan Government Exams";
+
+document.title =
+pageName + " | PYQ Quiz Master";
+
+document.querySelector('meta[name="description"]')
+.setAttribute(
+"content",
+"Practice " + pageName + " previous year questions, mock tests, PYQs and online quizzes for free."
+);
+
+document.querySelector('meta[name="keywords"]')
+.setAttribute(
+"content",
+pageName + ", PYQ, Mock Test, Previous Year Questions, Online Quiz"
+);
+
+const canonical =
+document.querySelector('link[rel="canonical"]');
+
+if(canonical){
+canonical.href =
+window.location.origin +
+window.location.pathname +
+"?category=" +
+category;
+}
+
 const pageTitle = document.getElementById("pageTitle");
 const examContainer = document.getElementById("examContainer");
 const searchInput = document.getElementById("searchInput");
