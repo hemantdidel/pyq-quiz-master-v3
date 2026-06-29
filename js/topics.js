@@ -1,31 +1,39 @@
+"use strict";
+
 const params = new URLSearchParams(window.location.search);
 
-const subject = params.get("subject");
+const path = params.get("path");
 
-// ===========================
-// Dynamic SEO
-// ===========================
+const pageTitle = document.getElementById("pageTitle");
+const topicContainer = document.getElementById("topicContainer");
 
-const subjectName = subject
-? subject.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())
-: "Subjects";
+if (!path) {
+
+    pageTitle.textContent = "Topics";
+
+    topicContainer.innerHTML =
+    "<h2>No Path Found</h2>";
+
+    throw new Error("Missing Path");
+
+}
+
+// SEO
+
+const lastName =
+path
+.split("/")
+.pop()
+.replace(/-/g," ")
+.replace(/\b\w/g,c=>c.toUpperCase());
 
 document.title =
-subjectName + " Topics | PYQ Quiz Master";
+lastName + " | PYQ Quiz Master";
 
 document.querySelector('meta[name="description"]')
 .setAttribute(
 "content",
-"Practice " +
-subjectName +
-" topic-wise mock tests, previous year questions, MCQs and quizzes for free."
-);
-
-document.querySelector('meta[name="keywords"]')
-.setAttribute(
-"content",
-subjectName +
-", Topic Wise, PYQ, Mock Test, MCQ, Practice Questions"
+"Practice " + lastName + " topic wise mock tests."
 );
 
 const canonical =
@@ -36,101 +44,75 @@ if(canonical){
 canonical.href =
 window.location.origin +
 window.location.pathname +
-"?subject=" +
-subject;
+"?path=" +
+path;
 
 }
 
-const pageTitle = document.getElementById("pageTitle");
+// Page Title
 
-const topicContainer = document.getElementById("topicContainer");
+pageTitle.textContent = lastName;
 
-const topics = {
+// Load Folder
 
-"rajasthan-gk":[
-"history",
-"geography",
-"polity",
-"economy",
-"art-culture",
-"current-affairs",
-"mixed"
-],
+fetch(`data/${path}/exams.json`)
 
-"india-gk":[
-"history",
-"geography",
-"polity",
-"economy",
-"art-culture",
-"current-affairs",
-"mixed"
-],
+.then(res=>{
 
-"maths":[
-"percentage",
-"ratio-proportion",
-"average",
-"profit-loss",
-"time-work",
-"time-distance",
-"mensuration",
-"algebra",
-"mixed"
-],
+if(!res.ok){
 
-"reasoning":[
-"analogy",
-"coding-decoding",
-"blood-relation",
-"direction",
-"alphabet",
-"number-series",
-"puzzle",
-"mixed"
-],
+throw new Error();
 
-"science":[
-"physics",
-"chemistry",
-"biology",
-"environment",
-"space-science",
-"mixed"
-],
+}
 
-"computer":[
-"basics",
-"hardware",
-"software",
-"internet",
-"ms-office",
-"networking",
-"mixed"
-]
+return res.json();
 
-};
+})
 
-pageTitle.textContent =
-subjectName + " Topics";
+.then(data=>{
+
+showCards(data);
+
+})
+
+.catch(()=>{
+
+window.location.href =
+`tests.html?path=${path}`;
+
+});
+
+// Cards
+
+function showCards(list){
 
 let html="";
 
-(topics[subject] || []).forEach(item=>{
+list.forEach(item=>{
 
 html+=`
 
 <div class="card">
 
-<h3>
-${item.replaceAll("-"," ").replace(/\b\w/g,c=>c.toUpperCase())}
-</h3>
+<h2>
+
+${item.icon || "📚"}
+
+${item.name}
+
+</h2>
+
+<p>
+
+${item.description || ""}
+
+</p>
 
 <a
 class="btn"
-href="tests.html?category=subject-wise&exam=${subject}&post=${item}">
+href="topics.html?path=${path}/${item.folder}">
 
-Open Tests
+Open
 
 </a>
 
@@ -141,3 +123,5 @@ Open Tests
 });
 
 topicContainer.innerHTML=html;
+
+}
