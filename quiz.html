@@ -9,27 +9,38 @@
 
 <title>Online Quiz | PYQ Quiz Master</title>
 
-<meta name="description"
-content="Attempt free online quiz with timer, leaderboard and instant result.">
+<meta
+name="description"
+content="Attempt free online quiz with timer, instant result and review.">
 
-<meta name="keywords"
+<meta
+name="keywords"
 content="Quiz, Online Test, PYQ Quiz">
 
-<meta name="author"
+<meta
+name="author"
 content="Hemant Didel">
 
-<meta name="robots"
+<meta
+name="robots"
 content="index,follow">
 
-<link rel="canonical"
-href="https://hemantdidel.github.io/pyq-quiz-master-v3/quiz.html">
+<link
+rel="canonical"
+href="">
 
-<link rel="icon"
+<link
+rel="icon"
 href="assets/favicon.ico">
 
-<link rel="stylesheet"
+<link
+rel="stylesheet"
 href="css/style.css">
-<link rel="stylesheet" href="css/quiz.css">
+
+<link
+rel="stylesheet"
+href="css/quiz.css">
+
 </head>
 
 <body>
@@ -37,43 +48,51 @@ href="css/style.css">
 <header class="header quiz-header">
 
 <div class="logo">
-
 🎯 PYQ Quiz Master
-
 </div>
 
-<a href="index.html" class="btn">
-
+<a
+href="index.html"
+class="btn">
 🏠 Home
-
 </a>
 
 </header>
-  
-<div id="nameModal" class="name-modal">
 
-    <div class="name-card">
+<div
+id="nameModal"
+class="name-modal">
 
-        <h2>🎯 PYQ Quiz Master</h2>
+<div class="name-card">
 
-        <p>Test शुरू करने से पहले अपना नाम दर्ज करें</p>
+<h2>🎯 PYQ Quiz Master</h2>
 
-        <input
-            type="text"
-            id="studentNameInput"
-            placeholder="Enter Your Name"
-            maxlength="25"
-        >
+<p>
 
-        <button id="startQuizBtn">
-            🚀 Start Test
-        </button>
+Test शुरू करने से पहले अपना नाम दर्ज करें
 
-    </div>
+</p>
+
+<input
+type="text"
+id="studentNameInput"
+placeholder="Enter Your Name"
+maxlength="25">
+
+<button id="startQuizBtn">
+
+🚀 Start Test
+
+</button>
 
 </div>
-  
-<div class="quiz-container" id="quizContainer" style="display:none;">
+
+</div>
+
+<main
+class="quiz-container"
+id="quizContainer"
+style="display:none;">
 
 <div class="quiz-top">
 
@@ -85,7 +104,7 @@ Loading Test...
 
 <div id="timer">
 
-⏱ 20:00
+⏱ 00:00
 
 </div>
 
@@ -139,15 +158,16 @@ Next ➡
 
 </div>
 
-...
 <button id="submitBtn">
+
 🚩 Submit Test
+
 </button>
 
-</div>
+</main>
 
-<script type="module" src="js/firebase.js"></script>
 <script src="js/quiz.js"></script>
 
 </body>
+
 </html>
