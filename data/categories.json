@@ -1,20 +1,14 @@
 [
   {
-    "title":"Central Government",
-    "icon":"🇮🇳",
-    "folder":"central",
-    "description":"Railway, SSC, Bank, Defence and more."
+    "title": "Central Government",
+    "icon": "🇮🇳",
+    "folder": "central",
+    "description": "Railway, SSC, Bank, Defence and more."
   },
   {
-    "title":"Rajasthan Government",
-    "icon":"🏰",
-    "folder":"rajasthan",
-    "description":"CET, REET, Patwari, LDC, SI and more."
-  },
-  {
-    "title":"Subject Wise",
-    "icon":"📚",
-    "folder":"subject-wise",
-    "description":"GK, Maths, Reasoning, Science and Computer."
+    "title": "Rajasthan Government",
+    "icon": "🏰",
+    "folder": "rajasthan",
+    "description": "CET, REET, Patwari, LDC, SI and more."
   }
 ]
