@@ -74,7 +74,7 @@ function displayCategories(list){
 
             <a
             class="btn"
-            href="category.html?path=${item.folder}">
+            href="browse.html?path=${item.folder}">
 
             Explore
 
