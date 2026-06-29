@@ -29,7 +29,7 @@ window.location.pathname;
 
 }
 
-fetch("data/subjects.json")
+fetch("data/subject-wise/exams.json")
 .then(res => res.json())
 .then(subjects => {
 
@@ -41,7 +41,9 @@ html += `
 
 <div class="card">
 
-<h2>${subject.icon} ${subject.title}</h2>
+<h2>${subject.icon} ${subject.name}</h2>
+
+<p>${subject.description}</p>
 
 <a
 class="btn"
