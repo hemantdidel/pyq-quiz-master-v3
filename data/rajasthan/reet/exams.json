@@ -1,11 +1,14 @@
 [
   {
-    "title": "Level 1",
+    "name": "Level 1",
+    "icon": "👨‍🏫",
+    "description": "Primary Teacher (Classes 1 to 5)",
     "folder": "level1"
   },
-
   {
-    "title": "Level 2",
+    "name": "Level 2",
+    "icon": "📘",
+    "description": "Upper Primary Teacher (Classes 6 to 8)",
     "folder": "level2"
   }
 ]
