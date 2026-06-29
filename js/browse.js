@@ -1,16 +1,16 @@
 "use strict";
 
-// ==========================
-// URL
-// ==========================
+/* ==========================
+   URL PARAMS
+========================== */
 
 const params = new URLSearchParams(window.location.search);
 
 const path = params.get("path") || "";
 
-// ==========================
-// DOM
-// ==========================
+/* ==========================
+   DOM
+========================== */
 
 const pageTitle =
 document.getElementById("pageTitle");
@@ -21,9 +21,9 @@ document.getElementById("cardContainer");
 const searchInput =
 document.getElementById("searchInput");
 
-// ==========================
-// PAGE NAME
-// ==========================
+/* ==========================
+   PAGE NAME
+========================== */
 
 const pageName = path
 .split("/")
@@ -33,27 +33,26 @@ const pageName = path
 
 pageTitle.textContent = pageName;
 
-// ==========================
-// SEO
-// ==========================
+/* ==========================
+   SEO
+========================== */
 
 document.title =
-pageName +
-" | PYQ Quiz Master";
+pageName + " | PYQ Quiz Master";
 
 document.querySelector('meta[name="description"]')
 .setAttribute(
 "content",
 "Practice " +
 pageName +
-" previous year questions and mock tests."
+" previous year questions, mock tests and quizzes."
 );
 
 document.querySelector('meta[name="keywords"]')
 .setAttribute(
 "content",
 pageName +
-", PYQ, Mock Test"
+", PYQ, Mock Test, Previous Year Questions"
 );
 
 const canonical =
@@ -69,15 +68,15 @@ path;
 
 }
 
-// ==========================
-// DATA
-// ==========================
+/* ==========================
+   DATA
+========================== */
 
-let items=[];
+let items = [];
 
-// ==========================
-// LOAD
-// ==========================
+/* ==========================
+   LOAD
+========================== */
 
 load();
 
@@ -85,12 +84,13 @@ async function load(){
 
 try{
 
-const response=
+const response =
 await fetch(`data/${path}/exams.json`);
 
 if(response.ok){
 
-items=await response.json();
+items =
+await response.json();
 
 showCards(items);
 
@@ -98,36 +98,55 @@ return;
 
 }
 
-}catch(e){}
+}catch(error){
 
-window.location.href=
+console.log(error);
+
+}
+
+/* No exams.json → Open Tests */
+
+window.location.href =
 `tests.html?path=${path}`;
 
 }
 
-// ==========================
-// SHOW CARDS
-// ==========================
+/* ==========================
+   SHOW CARDS
+========================== */
 
 function showCards(list){
 
-let html="";
+let html = "";
 
 list.forEach(item=>{
 
-html+=`
+const title =
+item.name ||
+item.title ||
+"Untitled";
+
+const description =
+item.description ||
+"";
+
+const icon =
+item.icon ||
+"📚";
+
+html += `
 
 <div class="card">
 
 <h2>
 
-${item.icon || "📚"} ${item.name}
+${icon} ${title}
 
 </h2>
 
 <p>
 
-${item.description || ""}
+${description}
 
 </p>
 
@@ -145,31 +164,35 @@ Open
 
 });
 
-cardContainer.innerHTML=html;
+cardContainer.innerHTML = html;
 
 }
 
-// ==========================
-// SEARCH
-// ==========================
+/* ==========================
+   SEARCH
+========================== */
 
 if(searchInput){
 
 searchInput.addEventListener("input",()=>{
 
-const keyword=
+const keyword =
 searchInput.value
 .trim()
 .toLowerCase();
 
-const filtered=
-items.filter(item=>
+const filtered =
+items.filter(item=>{
 
-item.name
-.toLowerCase()
-.includes(keyword)
+const text =
+(item.name ||
+item.title ||
+"")
+.toLowerCase();
 
-);
+return text.includes(keyword);
+
+});
 
 showCards(filtered);
 
