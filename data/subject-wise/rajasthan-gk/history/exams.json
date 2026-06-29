@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Ancient History",
+    "icon": "🗿",
+    "folder": "ancient-history",
+    "description": "प्राचीन राजस्थान का इतिहास"
+  },
+  {
+    "name": "Medieval History",
+    "icon": "🏯",
+    "folder": "medieval-history",
+    "description": "मध्यकालीन राजस्थान"
+  },
+  {
+    "name": "Modern History",
+    "icon": "📜",
+    "folder": "modern-history",
+    "description": "आधुनिक राजस्थान"
+  },
+  {
+    "name": "Mixed History",
+    "icon": "📚",
+    "folder": "mixed",
+    "description": "संपूर्ण इतिहास"
+  }
+]
