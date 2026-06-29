@@ -3,7 +3,7 @@
     "name": "History",
     "icon": "🏰",
     "folder": "history",
-    "description": "Ancient, Medieval, Modern Rajasthan History"
+    "description": "Ancient, Medieval, Modern Indian History"
   },
   {
     "name": "Geography",
@@ -21,18 +21,18 @@
     "name": "Economy",
     "icon": "💰",
     "folder": "economy",
-    "description": "Economics of Rajasthan"
+    "description": "Economics of India"
   },
   {
     "name": "Current Affairs",
     "icon": "📰",
     "folder": "current-affairs",
-    "description": "Latest Rajasthan Current Affairs"
+    "description": "Latest Indian Current Affairs"
   },
   {
     "name": "Mixed",
     "icon": "📚",
     "folder": "mixed",
-    "description": "Mixed Rajasthan GK Practice"
+    "description": "Mixed India GK Practice"
   }
 ]
