@@ -1,5 +1,11 @@
 [
   {
+    "name": "Art & Culture",
+    "icon": "🎭",
+    "folder": "art-culture",
+    "description": "Dance, Music, Festivals & Heritage"
+  },
+  {
     "name": "History",
     "icon": "🏰",
     "folder": "history",
@@ -22,12 +28,6 @@
     "icon": "💰",
     "folder": "economy",
     "description": "Economics of Rajasthan"
-  },
-  {
-    "name": "Art & Culture",
-    "icon": "🎭",
-    "folder": "art-culture",
-    "description": "Dance, Music, Festivals & Heritage"
   },
   {
     "name": "Current Affairs",
