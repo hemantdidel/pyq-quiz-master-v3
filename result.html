@@ -2,151 +2,124 @@
 <html lang="hi">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>Quiz Result | PYQ Quiz Master</title>
-<meta name="description"
+
+<meta
+name="description"
 content="Check your quiz result, score, percentage, rank and detailed performance analysis.">
 
-<meta name="keywords"
-content="Quiz Result, Score, Rank">
+<meta
+name="keywords"
+content="Quiz Result, Score, Rank, Leaderboard">
 
-<meta name="author"
+<meta
+name="author"
 content="Hemant Didel">
 
-<meta name="robots"
+<meta
+name="robots"
 content="noindex,nofollow">
 
-<link rel="icon"
+<link
+rel="canonical"
+href="">
+
+<link
+rel="icon"
 href="assets/favicon.ico">
 
-<link rel="stylesheet" href="css/style.css">
+<link
+rel="stylesheet"
+href="css/style.css">
 
 <style>
 
 .result-container{
-    max-width:800px;
-    margin:30px auto;
-    padding:20px;
+max-width:900px;
+margin:30px auto;
+padding:20px;
 }
 
 .result-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-    gap:15px;
-    margin-bottom:25px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:15px;
+margin-bottom:25px;
 }
 
 .result-card{
-    padding:20px;
-    border-radius:12px;
-    background:#fff;
-    text-align:center;
-    border:1px solid #e0e0e0;
-    box-shadow:0 2px 8px rgba(0,0,0,.07);
+background:#fff;
+padding:20px;
+border-radius:12px;
+text-align:center;
+border:1px solid #ddd;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .result-card h2{
-    margin:0 0 8px;
-    font-size:2rem;
-    color:#333;
+font-size:2rem;
+margin-bottom:8px;
 }
 
 .result-card p{
-    margin:0;
-    color:#666;
-    font-size:.9rem;
+color:#666;
 }
 
 .result-progress{
-    margin:20px 0;
-    height:22px;
-    background:#e0e0e0;
-    border-radius:30px;
-    overflow:hidden;
+height:22px;
+background:#ddd;
+border-radius:30px;
+overflow:hidden;
+margin:25px 0;
 }
 
 .result-progress-fill{
-    height:100%;
-    width:0%;
-    background:linear-gradient(90deg,#4caf50,#66bb6a);
-    border-radius:30px;
-    transition:width .8s ease;
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#22c55e,#16a34a);
+transition:.8s;
 }
 
 .leaderboard-box{
-    margin-top:35px;
-    padding:20px;
-    border:1px solid #ddd;
-    border-radius:12px;
-    background:#fff;
+margin-top:35px;
+padding:20px;
+background:#fff;
+border-radius:12px;
+border:1px solid #ddd;
 }
 
 .leaderboard-box h2{
-    margin-bottom:15px;
-}
-
-#playerName{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:16px;
-    margin-bottom:15px;
-}
-
-#saveScoreBtn{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background:#2196f3;
-    color:#fff;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:bold;
+margin-bottom:15px;
 }
 
 #yourRank{
-    margin-top:20px;
-    text-align:center;
-    color:#4caf50;
+margin:20px 0;
+text-align:center;
+font-size:20px;
+font-weight:bold;
+color:#16a34a;
 }
 
 #leaderboardList{
-    margin-top:20px;
+margin-top:20px;
 }
 
 .result-buttons{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-top:30px;
+display:flex;
+gap:15px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:35px;
 }
 
-.result-buttons button{
-    padding:12px 24px;
-    border:none;
-    cursor:pointer;
-    border-radius:8px;
-    font-size:15px;
-    font-weight:600;
-}
-
-.btn-review{
-    background:#2196f3;
-    color:#fff;
-}
-
-.btn-retry{
-    background:#4caf50;
-    color:#fff;
-}
-
-.btn-home{
-    background:#555;
-    color:#fff;
+.result-buttons .btn{
+padding:12px 24px;
 }
 
 </style>
@@ -161,97 +134,173 @@ href="assets/favicon.ico">
 🎯 PYQ Quiz Master
 </div>
 
-<a href="index.html" class="btn">
+<a
+href="index.html"
+class="btn">
+
 🏠 Home
+
 </a>
 
 </header>
 
-<div class="result-container">
+<main class="result-container">
 
-<h1 style="text-align:center;margin-bottom:25px;">
+<h1 class="title">
+
 📊 Quiz Result
+
 </h1>
 
 <div class="result-grid">
 
 <div class="result-card">
+
 <h2 id="score">0</h2>
+
 <p>Score</p>
+
 </div>
 
 <div class="result-card">
-<h2 id="correct" style="color:#4caf50;">0</h2>
+
+<h2
+id="correct"
+style="color:#16a34a;">
+
+0
+
+</h2>
+
 <p>Correct ✅</p>
+
 </div>
 
 <div class="result-card">
-<h2 id="wrong" style="color:#f44336;">0</h2>
+
+<h2
+id="wrong"
+style="color:#dc2626;">
+
+0
+
+</h2>
+
 <p>Wrong ❌</p>
+
 </div>
 
 <div class="result-card">
-<h2 id="unattempted" style="color:#ff9800;">0</h2>
+
+<h2
+id="unattempted"
+style="color:#f59e0b;">
+
+0
+
+</h2>
+
 <p>Skipped ⏭</p>
+
 </div>
 
 <div class="result-card">
-<h2 id="percentage" style="color:#2196f3;">0%</h2>
+
+<h2
+id="percentage"
+style="color:#2563eb;">
+
+0%
+
+</h2>
+
 <p>Percentage</p>
+
 </div>
 
 </div>
 
 <div class="result-progress">
-<div class="result-progress-fill" id="progressFill"></div>
+
+<div
+id="progressFill"
+class="result-progress-fill">
+
 </div>
 
-<hr style="margin:30px 0;">
+</div>
 
 <div class="leaderboard-box">
 
 <h2>
+
 🏆 Global Leaderboard
+
 </h2>
 
-<p style="text-align:center;font-size:18px;margin:15px 0;">
+<p style="text-align:center;">
+
 👤 Player :
 <strong id="playerNameText"></strong>
+
 </p>
 
-<button id="saveScoreBtn" style="display:none;">
-🏆 Save Score
-</button>
+<h3 id="yourRank">
 
-<h3 id="yourRank"></h3>
+Loading Rank...
+
+</h3>
 
 <div id="leaderboardList">
+
 Loading Leaderboard...
+
 </div>
 
 </div>
 
 <div class="result-buttons">
 
-<button class="btn-review" id="reviewBtn">
+<button
+id="reviewBtn"
+class="btn">
+
 📝 Review Answers
+
 </button>
 
-<button class="btn-retry" id="retryBtn">
-🔁 Try Again
+<button
+id="retryBtn"
+class="btn">
+
+🔄 Retry Test
+
 </button>
 
-<button class="btn-home" id="homeBtn">
+<a
+href="index.html"
+class="btn">
+
 🏠 Home
-</button>
+
+</a>
 
 </div>
 
-</div>
+</main>
 
-<script type="module" src="js/result.js"></script>
-<script type="module" src="js/leaderboard.js"></script>
+<script
+type="module"
+src="js/result.js">
+
+</script>
+
+<script
+type="module"
+src="js/leaderboard.js">
+
+</script>
+
 </body>
 
 </html>
-```
