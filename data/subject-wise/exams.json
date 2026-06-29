@@ -1,32 +1,56 @@
 [
   {
     "name": "Rajasthan GK",
+    "icon": "🏰",
     "folder": "rajasthan-gk",
-    "description": "History, Geography, Polity, Economy, Art & Culture"
+    "description": "History, Geography, Polity, Economy, Art & Culture & Current Affairs"
   },
   {
     "name": "India GK",
+    "icon": "🇮🇳",
     "folder": "india-gk",
-    "description": "History, Geography, Polity, Economy & Current Affairs"
+    "description": "History, Geography, Polity, Economy, Art & Culture & Current Affairs"
   },
   {
     "name": "Maths",
+    "icon": "🧮",
     "folder": "maths",
-    "description": "Arithmetic, Algebra, Geometry & Advanced Maths"
+    "description": "Arithmetic, Algebra, Geometry, Mensuration & Advanced Maths"
   },
   {
     "name": "Reasoning",
+    "icon": "🧠",
     "folder": "reasoning",
-    "description": "Verbal & Non-Verbal Reasoning Practice"
+    "description": "Verbal, Non-Verbal, Logical & Analytical Reasoning"
   },
   {
     "name": "Science",
+    "icon": "🔬",
     "folder": "science",
-    "description": "Physics, Chemistry, Biology & Environment"
+    "description": "Physics, Chemistry, Biology, Environment & Space Science"
   },
   {
     "name": "Computer",
+    "icon": "💻",
     "folder": "computer",
-    "description": "Computer Fundamentals, MS Office, Internet & Networking"
+    "description": "Computer Basics, Hardware, Software, Internet, Networking & MS Office"
+  },
+  {
+    "name": "English",
+    "icon": "📖",
+    "folder": "english",
+    "description": "Grammar, Vocabulary, Reading Comprehension & Practice Sets"
+  },
+  {
+    "name": "Hindi",
+    "icon": "📝",
+    "folder": "hindi",
+    "description": "व्याकरण, शब्दावली, वाक्य शुद्धि एवं अभ्यास प्रश्न"
+  },
+  {
+    "name": "Current Affairs",
+    "icon": "📰",
+    "folder": "current-affairs",
+    "description": "Daily, Monthly & Yearly Current Affairs MCQ Practice"
   }
 ]
