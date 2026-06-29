@@ -1,228 +1,354 @@
 import {
-    db,
-    collection,
-    addDoc,
-    getDocs,
-    query,
-    where,
-    orderBy,
-    limit,
-    updateDoc,
-    doc,
-    serverTimestamp,
-    onSnapshot
+db,
+collection,
+addDoc,
+getDocs,
+query,
+where,
+orderBy,
+limit,
+updateDoc,
+doc,
+serverTimestamp,
+onSnapshot
 } from "./firebase.js";
+
+"use strict";
 
 /* ==========================================
    DOM
 ========================================== */
 
-const leaderboardList = document.getElementById("leaderboardList");
-const yourRank = document.getElementById("yourRank");
-const playerNameText = document.getElementById("playerNameText");
+const leaderboardList =
+document.getElementById("leaderboardList");
+
+const yourRank =
+document.getElementById("yourRank");
+
+const playerNameText =
+document.getElementById("playerNameText");
 
 /* ==========================================
    RESULT
 ========================================== */
 
-const result = JSON.parse(localStorage.getItem("quiz_result"));
+const result =
+JSON.parse(localStorage.getItem("quiz_result"));
 
-if (!result) {
-    window.location.href = "index.html";
+if(!result){
+
+window.location.href="index.html";
+
 }
 
-playerNameText.textContent = result.playerName;
+playerNameText.textContent =
+result.playerName || "Unknown";
 
 /* ==========================================
-   SAVE / UPDATE SCORE
+   SAVE SCORE
 ========================================== */
 
-async function saveScore() {
+async function saveScore(){
 
-    const leaderboardRef = collection(db, "leaderboard");
+const leaderboardRef =
+collection(db,"leaderboard");
 
-    const q = query(
-        leaderboardRef,
-        where("playerId", "==", result.playerId),
-        where("testId", "==", result.testId)
-    );
+const q=query(
 
-    const snapshot = await getDocs(q);
+leaderboardRef,
 
-    if (snapshot.empty) {
+where("playerId","==",result.playerId),
 
-        // New Record
+where("testId","==",result.testId)
 
-        await addDoc(leaderboardRef, {
+);
 
-            playerId: result.playerId,
-            name: result.playerName || localStorage.getItem("player_name") || "Unknown",
+const snapshot=
+await getDocs(q);
 
-            testId: result.testId,
+const newData={
 
-            score: result.score,
-            total: result.total,
+playerId:result.playerId,
 
-            percentage:
-                Number(
-                    (
-                        result.score /
-                        result.total *
-                        100
-                    ).toFixed(1)
-                ),
+name:
+result.playerName ||
+localStorage.getItem("player_name") ||
+"Unknown",
 
-            timeTaken: result.timeTaken,
+testId:result.testId,
 
-            createdAt: serverTimestamp(),
-            updatedAt: serverTimestamp()
+score:result.score,
 
-        });
+total:result.total,
 
-    } else {
+percentage:Number(
 
-        // Existing Record
+((result.score/result.total)*100)
 
-        const oldDoc = snapshot.docs[0];
+.toFixed(1)
 
-        const oldData = oldDoc.data();
+),
 
-        const betterScore =
-            result.score > oldData.score;
+attempted:result.attempted,
 
-        const sameScoreBetterTime =
-            result.score === oldData.score &&
-            result.timeTaken < oldData.timeTaken;
+timeTaken:result.timeTaken,
 
-        if (betterScore || sameScoreBetterTime) {
+updatedAt:serverTimestamp()
 
-            await updateDoc(doc(db,
-                "leaderboard",
-                oldDoc.id
-            ), {
-    playerId: result.playerId,
-    testId: result.testId,
+};
 
-    name: result.playerName || localStorage.getItem("player_name") || "Unknown",
+if(snapshot.empty){
 
-    score: result.score,
-    total: result.total,
+await addDoc(
 
-    percentage: Number(
-        ((result.score / result.total) * 100).toFixed(1)
-    ),
+leaderboardRef,
 
-    timeTaken: result.timeTaken,
+{
 
-    updatedAt: serverTimestamp()
-});
+...newData,
 
-        }
-
-    }
+createdAt:serverTimestamp()
 
 }
+
+);
+
+return;
+
+}
+
+const oldDoc=
+snapshot.docs[0];
+
+const oldData=
+oldDoc.data();
+
+const betterScore=
+
+result.score>
+
+oldData.score;
+
+const betterTime=
+
+result.score===oldData.score &&
+
+result.timeTaken<oldData.timeTaken;
+
+if(betterScore || betterTime){
+
+await updateDoc(
+
+doc(
+
+db,
+
+"leaderboard",
+
+oldDoc.id
+
+),
+
+newData
+
+);
+
+}
+
+}
+
 /* ==========================================
    LIVE LEADERBOARD
 ========================================== */
 
-function loadLeaderboard() {
+function loadLeaderboard(){
 
-    const leaderboardRef = collection(db, "leaderboard");
+const leaderboardRef=
+collection(db,"leaderboard");
 
-const q = query(
-    leaderboardRef,
+const q=query(
 
-    where("testId", "==", result.testId),
+leaderboardRef,
 
-    orderBy("score", "desc"),
-    orderBy("timeTaken", "asc"),
+where("testId","==",result.testId),
 
-    limit(100)
+orderBy("score","desc"),
+
+orderBy("timeTaken","asc"),
+
+limit(100)
+
 );
 
-    onSnapshot(q, (snapshot) => {
+onSnapshot(q,(snapshot)=>{
 
-        let html = "";
+let html="";
 
-        let rank = 1;
+let rank=1;
 
-        let found = false;
+let myRank=null;
 
-        snapshot.forEach((item) => {
+snapshot.forEach(docItem=>{
 
-            const data = item.data();
+const data=docItem.data();
 
-            let medal = "";
+let medal="";
 
-            if (rank === 1) medal = "🥇";
-            else if (rank === 2) medal = "🥈";
-            else if (rank === 3) medal = "🥉";
+if(rank===1){
 
-            html += `
-                <div style="
-                    display:flex;
-                    justify-content:space-between;
-                    align-items:center;
-                    padding:12px;
-                    border-bottom:1px solid #eee;
-                ">
+medal="🥇";
 
-                    <div>
-                        <strong>${medal} #${rank}</strong>
-                        &nbsp;
-                        ${data.name}
-                    </div>
+}else if(rank===2){
 
-                    <div>
-                        ${data.score}/${data.total}
-                        <br>
-                        <small>${data.percentage}%</small>
-                    </div>
+medal="🥈";
 
-                </div>
-            `;
+}else if(rank===3){
 
-            if (
-                data.playerId === result.playerId &&
-                data.testId === result.testId
-            ) {
-
-                yourRank.innerHTML =
-                    `🏆 Your Rank : #${rank}`;
-
-                found = true;
-
-            }
-
-            rank++;
-
-        });
-
-        if (!found) {
-            yourRank.innerHTML = "Rank will appear after saving.";
-        }
-
-        leaderboardList.innerHTML =
-            html || "No Records Found.";
-
-    });
+medal="🥉";
 
 }
+
+const isMe=
+
+data.playerId===result.playerId;
+
+html+=`
+
+<div class="card"
+
+style="margin-bottom:10px;
+
+${isMe ? "border:2px solid #2563eb;" : ""}">
+
+<div style="display:flex;
+
+justify-content:space-between;
+
+align-items:center;">
+
+<div>
+
+<strong>
+
+${medal}
+
+#${rank}
+
+</strong>
+
+&nbsp;
+
+${data.name}
+
+${isMe ? " 👤" : ""}
+
+</div>
+
+<div style="text-align:right;">
+
+<b>
+
+${data.score}/${data.total}
+
+</b>
+
+<br>
+
+<small>
+
+${data.percentage}%
+
+</small>
+
+<br>
+
+<small>
+
+⏱ ${data.timeTaken}s
+
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+if(isMe){
+
+myRank=rank;
+
+}
+
+rank++;
+
+});
+
+leaderboardList.innerHTML=
+
+html ||
+
+"<div class='card'>No Records Found</div>";
+
+if(myRank){
+
+yourRank.innerHTML=
+
+`🏆 Your Rank : #${myRank}`;
+
+}else{
+
+yourRank.innerHTML=
+
+"Not Ranked Yet";
+
+}
+
+});
+
+}
+
 /* ==========================================
-   AUTO SAVE + INIT
+   INIT
 ========================================== */
 
-// Save बटन क्लिक
-function initLeaderboard() {
+async function initLeaderboard(){
 
-    saveScore()
-        .then(() => {
-            loadLeaderboard();
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+try{
+
+await saveScore();
+
+loadLeaderboard();
+
+}
+
+catch(error){
+
+console.error(error);
+
+leaderboardList.innerHTML=`
+
+<div class="card">
+
+<h2>
+
+⚠ Leaderboard Error
+
+</h2>
+
+<p>
+
+Unable to load leaderboard.
+
+</p>
+
+</div>
+
+`;
+
+}
 
 }
 
