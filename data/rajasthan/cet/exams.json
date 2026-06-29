@@ -1,11 +1,14 @@
 [
   {
-    "title": "Graduation Level",
+    "name": "Graduation Level",
+    "icon": "🎓",
+    "description": "Rajasthan CET Graduation Level Practice Tests",
     "folder": "graduation"
   },
-
   {
-    "title": "Senior Secondary Level",
+    "name": "Senior Secondary Level",
+    "icon": "🏫",
+    "description": "Rajasthan CET Senior Secondary Level Practice Tests",
     "folder": "senior-secondary"
   }
 ]
