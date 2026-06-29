@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Geo Set 01 - India Basics",
+    "questions": 20,
+    "time": 20,
+    "file": "set01.json"
+  },
+  {
+    "title": "Geo Set 02 - Indian States & Capitals",
+    "questions": 20,
+    "time": 20,
+    "file": "set02.json"
+  },
+  {
+    "title": "Geo Set 03 - Rivers & Mountains",
+    "questions": 20,
+    "time": 25,
+    "file": "set03.json"
+  },
+  {
+    "title": "Geo Set 04 - Indian Physical Geography",
+    "questions": 20,
+    "time": 25,
+    "file": "set04.json"
+  }
+]
