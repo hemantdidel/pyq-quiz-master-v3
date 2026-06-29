@@ -47,7 +47,7 @@ html += `
 
 <a
 class="btn"
-href="topics.html?path=subject-wise/${subject.folder}"
+href="topics.html?path=subject-wise/${subject.folder}">
 
 Open
 
