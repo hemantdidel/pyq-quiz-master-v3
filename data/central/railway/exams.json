@@ -1,31 +1,32 @@
 [
   {
-    "name": "🚂 Group D",
+    "name": "Group D",
+    "icon": "🚂",
     "description": "Railway Group D Practice Tests",
     "folder": "groupd"
   },
-
   {
-    "name": "🚆 ALP",
-    "description": "Assistant Loco Pilot Tests",
+    "name": "ALP",
+    "icon": "🚆",
+    "description": "Assistant Loco Pilot Practice Tests",
     "folder": "alp"
   },
-
   {
-    "name": "🚄 NTPC",
-    "description": "NTPC Practice Tests",
+    "name": "NTPC",
+    "icon": "🚄",
+    "description": "Non-Technical Popular Categories Practice Tests",
     "folder": "ntpc"
   },
-
   {
-    "name": "🛠 Technician",
-    "description": "Railway Technician Tests",
+    "name": "Technician",
+    "icon": "🛠️",
+    "description": "Railway Technician Practice Tests",
     "folder": "technician"
   },
-
   {
-    "name": "👨‍🔧 JE",
-    "description": "Junior Engineer Tests",
+    "name": "JE",
+    "icon": "👨‍🔧",
+    "description": "Junior Engineer Practice Tests",
     "folder": "je"
   }
 ]
