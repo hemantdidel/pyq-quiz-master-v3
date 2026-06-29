@@ -128,13 +128,20 @@ async function loadQuiz() {
         }
 
         // Set title
-        DOM.title.textContent = QuizApp.dataPath
-            .split("/").pop()
-            .replace(".json", "")
-            .replaceAll("-", " ")
-            .toUpperCase();
 
-        initQuiz();
+const parts = QuizApp.dataPath
+.replace("data/","")
+.replace(".json","")
+.split("/");
+
+DOM.title.textContent =
+parts
+.slice(-2)
+.join(" • ")
+.replaceAll("-"," ")
+.toUpperCase();
+
+initQuiz();
 
     } catch (error) {
         console.error(error);
