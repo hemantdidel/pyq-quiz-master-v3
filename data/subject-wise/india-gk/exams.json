@@ -1,1 +1,38 @@
-
+[
+  {
+    "name": "History",
+    "icon": "🏰",
+    "folder": "history",
+    "description": "Ancient, Medieval, Modern Rajasthan History"
+  },
+  {
+    "name": "Geography",
+    "icon": "🌍",
+    "folder": "geography",
+    "description": "Physical, Economic & Human Geography"
+  },
+  {
+    "name": "Polity",
+    "icon": "🏛️",
+    "folder": "polity",
+    "description": "Constitution, Government & Administration"
+  },
+  {
+    "name": "Economy",
+    "icon": "💰",
+    "folder": "economy",
+    "description": "Economics of Rajasthan"
+  },
+  {
+    "name": "Current Affairs",
+    "icon": "📰",
+    "folder": "current-affairs",
+    "description": "Latest Rajasthan Current Affairs"
+  },
+  {
+    "name": "Mixed",
+    "icon": "📚",
+    "folder": "mixed",
+    "description": "Mixed Rajasthan GK Practice"
+  }
+]
