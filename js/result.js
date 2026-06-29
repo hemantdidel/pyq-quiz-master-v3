@@ -1,38 +1,92 @@
 "use strict";
 
-const result = JSON.parse(localStorage.getItem("quiz_result"));
+const result =
+JSON.parse(localStorage.getItem("quiz_result"));
 
-if (!result) {
-    window.location.href = "index.html";
+if(!result){
+
+window.location.href="index.html";
+
 }
 
-const total       = result.total;
-const score       = result.score;
-const attempted   = result.answers.filter(x => x !== null).length;
-const correct     = score;
-const wrong       = attempted - correct;
-const unattempted = total - attempted;
-const percentage  = ((score / total) * 100).toFixed(1);
+// ===========================
+// RESULT
+// ===========================
 
-document.getElementById("score").innerText       = `${score}/${total}`;
-document.getElementById("correct").innerText     = correct;
-document.getElementById("wrong").innerText       = wrong;
-document.getElementById("unattempted").innerText = unattempted;
-document.getElementById("percentage").innerText  = percentage + "%";
+const total=result.total;
 
-// Animate progress bar
-setTimeout(() => {
-    document.getElementById("progressFill").style.width = percentage + "%";
-}, 100);
+const score=result.score;
 
-document.getElementById("reviewBtn").addEventListener("click", () => {
-    window.location.href = "review.html";
+const attempted=result.attempted;
+
+const correct=score;
+
+const wrong=attempted-correct;
+
+const unattempted=total-attempted;
+
+const percentage=
+((score/total)*100).toFixed(1);
+
+// ===========================
+// PAGE TITLE
+// ===========================
+
+document.title=
+"Result | PYQ Quiz Master";
+
+// ===========================
+// SHOW RESULT
+// ===========================
+
+document.getElementById("score").textContent=
+`${score}/${total}`;
+
+document.getElementById("correct").textContent=
+correct;
+
+document.getElementById("wrong").textContent=
+wrong;
+
+document.getElementById("unattempted").textContent=
+unattempted;
+
+document.getElementById("percentage").textContent=
+percentage+"%";
+
+// ===========================
+// PROGRESS
+// ===========================
+
+setTimeout(()=>{
+
+document.getElementById("progressFill")
+.style.width=
+percentage+"%";
+
+},150);
+
+// ===========================
+// BUTTONS
+// ===========================
+
+document.getElementById("reviewBtn")
+.addEventListener("click",()=>{
+
+window.location.href="review.html";
+
 });
 
-document.getElementById("retryBtn").addEventListener("click", () => {
-    history.back();
+document.getElementById("retryBtn")
+.addEventListener("click",()=>{
+
+history.back();
+
 });
 
-document.getElementById("homeBtn").addEventListener("click", () => {
-    window.location.href = "index.html";
+document.getElementById("homeBtn")
+.addEventListener("click",()=>{
+
+window.location.href="index.html";
+
 });
