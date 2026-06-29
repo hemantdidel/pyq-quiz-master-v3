@@ -1,15 +1,24 @@
+"use strict";
+
+// ==========================
+// URL PARAMS
+// ==========================
+
 const params = new URLSearchParams(window.location.search);
 
-const category = params.get("category");
+const path = params.get("path");
 
 // ==========================
-// Dynamic SEO
+// PAGE NAME
 // ==========================
 
-let pageName =
-category === "central"
-? "Central Government Exams"
-: "Rajasthan Government Exams";
+const pageName = path
+.replace(/-/g, " ")
+.replace(/\b\w/g, c => c.toUpperCase());
+
+// ==========================
+// SEO
+// ==========================
 
 document.title =
 pageName + " | PYQ Quiz Master";
@@ -17,89 +26,166 @@ pageName + " | PYQ Quiz Master";
 document.querySelector('meta[name="description"]')
 .setAttribute(
 "content",
-"Practice " + pageName + " previous year questions, mock tests, PYQs and online quizzes for free."
+"Practice " +
+pageName +
+" previous year questions, mock tests and online quizzes for free."
 );
 
 document.querySelector('meta[name="keywords"]')
 .setAttribute(
 "content",
-pageName + ", PYQ, Mock Test, Previous Year Questions, Online Quiz"
+pageName +
+", PYQ, Mock Test, Previous Year Questions"
 );
 
 const canonical =
 document.querySelector('link[rel="canonical"]');
 
 if(canonical){
+
 canonical.href =
 window.location.origin +
 window.location.pathname +
-"?category=" +
-category;
+"?path=" +
+path;
+
 }
 
-const pageTitle = document.getElementById("pageTitle");
-const examContainer = document.getElementById("examContainer");
-const searchInput = document.getElementById("searchInput");
+// ==========================
+// DOM
+// ==========================
 
-pageTitle.innerHTML =
-category === "central"
-    ? "🇮🇳 Central Government Exams"
-    : "🏜 Rajasthan Government Exams";
+const pageTitle =
+document.getElementById("pageTitle");
+
+const examContainer =
+document.getElementById("examContainer");
+
+const searchInput =
+document.getElementById("searchInput");
+
+// ==========================
+// TITLE
+// ==========================
+
+pageTitle.textContent = pageName;
+
+// ==========================
+// DATA
+// ==========================
 
 let examList = [];
 
-fetch(`data/${category}/exams.json`)
-.then(response => response.json())
-.then(data => {
+// ==========================
+// LOAD DATA
+// ==========================
 
-    examList = data;
+fetch(`data/${path}/exams.json`)
+
+.then(response=>{
+
+    if(!response.ok){
+
+        throw new Error("Unable to load");
+
+    }
+
+    return response.json();
+
+})
+
+.then(data=>{
+
+    examList=data;
 
     showCards(examList);
 
 })
-.catch(() => {
 
-    examContainer.innerHTML =
-    "<h2>No Exams Found</h2>";
+.catch(()=>{
+
+    examContainer.innerHTML=`
+
+    <div class="card">
+
+        <h2>No Data Found</h2>
+
+        <p>Please add exams.json</p>
+
+    </div>
+
+    `;
 
 });
 
-function showCards(list) {
+// ==========================
+// SHOW CARDS
+// ==========================
 
-    let html = "";
+function showCards(list){
 
-    list.forEach(exam => {
+let html="";
 
-        html += `
-        <div class="card">
+list.forEach(item=>{
 
-            <h2>${exam.name}</h2>
+html+=`
 
-            <p>${exam.description}</p>
+<div class="card">
 
-            <a
-                class="btn"
-                href="exam.html?category=${category}&exam=${exam.folder}">
-                Open
-            </a>
+<h2>
 
-        </div>
-        `;
+${item.icon || "📚"} ${item.name}
 
-    });
+</h2>
 
-    examContainer.innerHTML = html;
+<p>
+
+${item.description}
+
+</p>
+
+<a
+class="btn"
+href="exam.html?path=${path}/${item.folder}">
+
+Open
+
+</a>
+
+</div>
+
+`;
+
+});
+
+examContainer.innerHTML=html;
 
 }
 
-searchInput.addEventListener("input", () => {
+// ==========================
+// SEARCH
+// ==========================
 
-    const keyword = searchInput.value.toLowerCase();
+if(searchInput){
 
-    const filtered = examList.filter(item =>
-        item.name.toLowerCase().includes(keyword)
-    );
+searchInput.addEventListener("input",()=>{
 
-    showCards(filtered);
+const keyword=
+searchInput.value
+.trim()
+.toLowerCase();
+
+const filtered=
+examList.filter(item=>
+
+item.name
+.toLowerCase()
+.includes(keyword)
+
+);
+
+showCards(filtered);
 
 });
+
+}
