@@ -1,1 +1,32 @@
-
+[
+  {
+    "name": "Rajasthan GK",
+    "folder": "rajasthan-gk",
+    "description": "History, Geography, Polity, Economy, Art & Culture"
+  },
+  {
+    "name": "India GK",
+    "folder": "india-gk",
+    "description": "Complete India General Knowledge"
+  },
+  {
+    "name": "Maths",
+    "folder": "maths",
+    "description": "Topic Wise Maths Practice"
+  },
+  {
+    "name": "Reasoning",
+    "folder": "reasoning",
+    "description": "Logical Reasoning Practice"
+  },
+  {
+    "name": "Science",
+    "folder": "science",
+    "description": "Physics, Chemistry, Biology"
+  },
+  {
+    "name": "Computer",
+    "folder": "computer",
+    "description": "Computer Fundamentals"
+  }
+]
