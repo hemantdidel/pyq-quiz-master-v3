@@ -1,39 +1,42 @@
+"use strict";
+
+// ===========================
+// URL PARAMS
+// ===========================
+
 const params = new URLSearchParams(window.location.search);
 
-const category = params.get("category");
-const exam = params.get("exam");
-const post = params.get("post");
+const path = params.get("path") || "";
+
 // ===========================
-// Dynamic SEO
+// PAGE NAME
 // ===========================
 
-const examName = exam
-    ? exam.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())
-    : "";
+const pageName = path
+.split("/")
+.pop()
+.replace(/-/g, " ")
+.replace(/\b\w/g, c => c.toUpperCase());
 
-const postName = post
-    ? post.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())
-    : "Practice Sets";
+// ===========================
+// SEO
+// ===========================
 
 document.title =
-postName + " " + examName + " Mock Tests | PYQ Quiz Master";
+pageName + " Mock Tests | PYQ Quiz Master";
 
 document.querySelector('meta[name="description"]')
 .setAttribute(
 "content",
 "Practice " +
-postName +
-" " +
-examName +
+pageName +
 " previous year questions, online mock tests, timer, leaderboard and detailed solutions for free."
 );
 
 document.querySelector('meta[name="keywords"]')
 .setAttribute(
 "content",
-postName +
-", " +
-examName +
+pageName +
 ", PYQ, Mock Test, Previous Year Questions, MCQ"
 );
 
@@ -45,36 +48,51 @@ if(canonical){
 canonical.href =
 window.location.origin +
 window.location.pathname +
-"?category=" +
-category +
-"&exam=" +
-exam +
-"&post=" +
-post;
+"?path=" +
+path;
 
 }
+
+// ===========================
+// DOM
+// ===========================
+
 const testContainer =
 document.getElementById("testContainer");
 
 const pageTitle =
 document.getElementById("pageTitle");
 
-pageTitle.innerHTML =
-(post || "Practice Sets").toUpperCase();
+pageTitle.textContent =
+pageName;
 
-fetch(`data/${category}/${exam}/${post}/tests.json`)
+// ===========================
+// LOAD TESTS
+// ===========================
 
-.then(response => response.json())
+fetch(`data/${path}/tests.json`)
 
-.then(data => {
+.then(response=>{
+
+if(!response.ok){
+
+throw new Error("Tests not found");
+
+}
+
+return response.json();
+
+})
+
+.then(data=>{
 
 showTests(data);
 
 })
 
-.catch(() => {
+.catch(()=>{
 
-testContainer.innerHTML = `
+testContainer.innerHTML=`
 
 <div class="card">
 
@@ -88,13 +106,17 @@ testContainer.innerHTML = `
 
 });
 
+// ===========================
+// SHOW TESTS
+// ===========================
+
 function showTests(list){
 
-let html = "";
+let html="";
 
-list.forEach((item,index)=>{
+list.forEach(item=>{
 
-html += `
+html+=`
 
 <div class="card">
 
@@ -117,10 +139,8 @@ ${item.title}
 </p>
 
 <a
-
 class="btn"
-
-href="quiz.html?file=data/${category}/${exam}/${post}/${item.file}">
+href="quiz.html?file=data/${path}/${item.file}">
 
 Start Test
 
@@ -132,6 +152,6 @@ Start Test
 
 });
 
-testContainer.innerHTML = html;
+testContainer.innerHTML=html;
 
 }
