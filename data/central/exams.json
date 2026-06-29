@@ -1,24 +1,25 @@
 [
   {
-    "name": "🚂 Railway",
+    "name": "Railway",
+    "icon": "🚂",
     "description": "Railway Recruitment Exams",
     "folder": "railway"
   },
-
   {
-    "name": "📋 SSC",
+    "name": "SSC",
+    "icon": "📋",
     "description": "SSC Competitive Exams",
     "folder": "ssc"
   },
-
   {
-    "name": "🏦 Banking",
+    "name": "Banking",
+    "icon": "🏦",
     "description": "IBPS, SBI & Other Bank Exams",
     "folder": "bank"
   },
-
   {
-    "name": "🪖 Defence",
+    "name": "Defence",
+    "icon": "🪖",
     "description": "Army, Navy & Air Force Exams",
     "folder": "defence"
   }
