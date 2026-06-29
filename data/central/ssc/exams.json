@@ -1,24 +1,25 @@
 [
   {
-    "name": "📋 GD",
+    "name": "GD",
+    "icon": "📋",
     "description": "SSC GD Practice Tests",
     "folder": "gd"
   },
-
   {
-    "name": "📄 CGL",
+    "name": "CGL",
+    "icon": "📄",
     "description": "SSC CGL Practice Tests",
     "folder": "cgl"
   },
-
   {
-    "name": "📝 CHSL",
+    "name": "CHSL",
+    "icon": "📝",
     "description": "SSC CHSL Practice Tests",
     "folder": "chsl"
   },
-
   {
-    "name": "📚 MTS",
+    "name": "MTS",
+    "icon": "📚",
     "description": "SSC MTS Practice Tests",
     "folder": "mts"
   }
