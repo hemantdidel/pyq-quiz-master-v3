@@ -1,5 +1,7 @@
+"use strict";
+
 // ==========================
-// Category Container
+// DOM
 // ==========================
 
 const categoryContainer =
@@ -16,7 +18,17 @@ let categories = [];
 
 fetch("data/categories.json")
 
-.then(response => response.json())
+.then(response => {
+
+    if(!response.ok){
+
+        throw new Error("Unable to load categories");
+
+    }
+
+    return response.json();
+
+})
 
 .then(data => {
 
@@ -56,13 +68,13 @@ function displayCategories(list){
 
         <div class="card">
 
-            <h2>${item.title}</h2>
+            <h2>${item.icon || "📚"} ${item.title}</h2>
 
             <p>${item.description}</p>
 
             <a
             class="btn"
-            href="category.html?category=${item.folder}">
+            href="category.html?path=${item.folder}">
 
             Explore
 
@@ -82,17 +94,21 @@ function displayCategories(list){
 // Search
 // ==========================
 
-searchInput.addEventListener("input", () => {
+if(searchInput){
 
-    const keyword =
-    searchInput.value.toLowerCase();
+    searchInput.addEventListener("input", () => {
 
-    const filtered = categories.filter(item =>
+        const keyword =
+        searchInput.value.trim().toLowerCase();
 
-        item.title.toLowerCase().includes(keyword)
+        const filtered = categories.filter(item =>
 
-    );
+            item.title.toLowerCase().includes(keyword)
 
-    displayCategories(filtered);
+        );
 
-});
+        displayCategories(filtered);
+
+    });
+
+}
