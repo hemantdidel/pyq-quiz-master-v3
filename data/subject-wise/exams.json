@@ -7,26 +7,26 @@
   {
     "name": "India GK",
     "folder": "india-gk",
-    "description": "Complete India General Knowledge"
+    "description": "History, Geography, Polity, Economy & Current Affairs"
   },
   {
     "name": "Maths",
     "folder": "maths",
-    "description": "Topic Wise Maths Practice"
+    "description": "Arithmetic, Algebra, Geometry & Advanced Maths"
   },
   {
     "name": "Reasoning",
     "folder": "reasoning",
-    "description": "Logical Reasoning Practice"
+    "description": "Verbal & Non-Verbal Reasoning Practice"
   },
   {
     "name": "Science",
     "folder": "science",
-    "description": "Physics, Chemistry, Biology"
+    "description": "Physics, Chemistry, Biology & Environment"
   },
   {
     "name": "Computer",
     "folder": "computer",
-    "description": "Computer Fundamentals"
+    "description": "Computer Fundamentals, MS Office, Internet & Networking"
   }
 ]
