@@ -1,12 +1,20 @@
 [
   {
-    "title": "🇮🇳 Central Government Exams",
-    "description": "Railway, SSC, Banking & Defence Practice Tests",
-    "folder": "central"
+    "title":"Central Government",
+    "icon":"🇮🇳",
+    "folder":"central",
+    "description":"Railway, SSC, Bank, Defence and more."
   },
   {
-    "title": "🏜 Rajasthan Government Exams",
-    "description": "CET, REET, RAS, SI, VDO & More",
-    "folder": "rajasthan"
+    "title":"Rajasthan Government",
+    "icon":"🏰",
+    "folder":"rajasthan",
+    "description":"CET, REET, Patwari, LDC, SI and more."
+  },
+  {
+    "title":"Subject Wise",
+    "icon":"📚",
+    "folder":"subject-wise",
+    "description":"GK, Maths, Reasoning, Science and Computer."
   }
 ]
