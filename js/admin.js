@@ -9,6 +9,12 @@ limit,
 onSnapshot
 } from "./firebase.js";
 
+if(
+sessionStorage.getItem("adminLoggedIn")!=="true"
+){
+window.location.href="admin-login.html";
+}
+
 // ===========================
 // DOM
 // ===========================
