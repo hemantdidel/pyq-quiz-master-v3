@@ -40,6 +40,7 @@ document.getElementById("searchInput");
 // ===========================
 
 let allAttempts=[];
+let currentFilter="all";
 
 // ===========================
 
@@ -61,7 +62,7 @@ allAttempts.push(doc.data());
 
 });
 
-render(allAttempts);
+applyFilter();
 
 });
 
@@ -106,7 +107,86 @@ users.add(item.playerId);
 }
 
 }
+function applyFilter(){
 
+const now=new Date();
+
+let filtered=[...allAttempts];
+
+switch(currentFilter){
+
+case "today":
+
+filtered=filtered.filter(item=>{
+
+const d=item.submittedAt?.toDate();
+
+return d &&
+
+d.toDateString()===
+
+now.toDateString();
+
+});
+
+break;
+
+case "yesterday":
+
+const y=new Date();
+
+y.setDate(y.getDate()-1);
+
+filtered=filtered.filter(item=>{
+
+const d=item.submittedAt?.toDate();
+
+return d &&
+
+d.toDateString()===
+
+y.toDateString();
+
+});
+
+break;
+
+case "week":
+
+filtered=filtered.filter(item=>{
+
+const d=item.submittedAt?.toDate();
+
+return d &&
+
+(now-d)/(1000*60*60*24)<=7;
+
+});
+
+break;
+
+case "month":
+
+filtered=filtered.filter(item=>{
+
+const d=item.submittedAt?.toDate();
+
+return d &&
+
+d.getMonth()===now.getMonth() &&
+
+d.getFullYear()===now.getFullYear();
+
+});
+
+break;
+
+}
+
+render(filtered);
+
+}
+  
 html+=`
 
 <div class="card">
@@ -203,6 +283,22 @@ render(filtered);
 // ===========================
 
 loadDashboard();
+
+document
+.querySelectorAll(".filterBtn")
+.forEach(btn=>{
+
+btn.onclick=()=>{
+
+currentFilter=
+
+btn.dataset.filter;
+
+applyFilter();
+
+};
+
+});
 
 // ===========================
 // LOGOUT
