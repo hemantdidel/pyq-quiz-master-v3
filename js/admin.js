@@ -203,3 +203,20 @@ render(filtered);
 // ===========================
 
 loadDashboard();
+
+// ===========================
+// LOGOUT
+// ===========================
+
+document
+.getElementById("logoutBtn")
+.addEventListener("click",()=>{
+
+sessionStorage.removeItem(
+"adminLoggedIn"
+);
+
+window.location.href=
+"admin-login.html";
+
+});
