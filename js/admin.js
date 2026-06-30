@@ -9,9 +9,11 @@ limit,
 onSnapshot
 } from "./firebase.js";
 
-if(
-sessionStorage.getItem("adminLoggedIn")!=="true"
-){
+// ===========================
+// LOGIN CHECK
+// ===========================
+
+if(sessionStorage.getItem("adminLoggedIn")!=="true"){
 window.location.href="admin-login.html";
 }
 
@@ -19,37 +21,38 @@ window.location.href="admin-login.html";
 // DOM
 // ===========================
 
-const attemptList =
-document.getElementById("attemptList");
+const attemptList=document.getElementById("attemptList");
 
-const todayUsers =
-document.getElementById("todayUsers");
+const todayUsers=document.getElementById("todayUsers");
 
-const todayAttempts =
-document.getElementById("todayAttempts");
+const todayAttempts=document.getElementById("todayAttempts");
 
-const avgScore =
-document.getElementById("avgScore");
+const avgScore=document.getElementById("avgScore");
 
-const highestScore =
-document.getElementById("highestScore");
+const highestScore=document.getElementById("highestScore");
 
-const searchInput =
-document.getElementById("searchInput");
+const searchInput=document.getElementById("searchInput");
 
 // ===========================
 
 let allAttempts=[];
+
 let currentFilter="all";
 
+// ===========================
+// LOAD DASHBOARD
 // ===========================
 
 function loadDashboard(){
 
 const q=query(
+
 collection(db,"attempts"),
+
 orderBy("submittedAt","desc"),
+
 limit(500)
+
 );
 
 onSnapshot(q,(snapshot)=>{
@@ -69,6 +72,8 @@ applyFilter();
 }
 
 // ===========================
+// RENDER
+// ===========================
 
 function render(data){
 
@@ -78,9 +83,9 @@ let highest=0;
 
 let totalScore=0;
 
-const today=new Date().toDateString();
-
 const users=new Set();
+
+const today=new Date().toDateString();
 
 let attemptsToday=0;
 
@@ -107,86 +112,7 @@ users.add(item.playerId);
 }
 
 }
-function applyFilter(){
 
-const now=new Date();
-
-let filtered=[...allAttempts];
-
-switch(currentFilter){
-
-case "today":
-
-filtered=filtered.filter(item=>{
-
-const d=item.submittedAt?.toDate();
-
-return d &&
-
-d.toDateString()===
-
-now.toDateString();
-
-});
-
-break;
-
-case "yesterday":
-
-const y=new Date();
-
-y.setDate(y.getDate()-1);
-
-filtered=filtered.filter(item=>{
-
-const d=item.submittedAt?.toDate();
-
-return d &&
-
-d.toDateString()===
-
-y.toDateString();
-
-});
-
-break;
-
-case "week":
-
-filtered=filtered.filter(item=>{
-
-const d=item.submittedAt?.toDate();
-
-return d &&
-
-(now-d)/(1000*60*60*24)<=7;
-
-});
-
-break;
-
-case "month":
-
-filtered=filtered.filter(item=>{
-
-const d=item.submittedAt?.toDate();
-
-return d &&
-
-d.getMonth()===now.getMonth() &&
-
-d.getFullYear()===now.getFullYear();
-
-});
-
-break;
-
-}
-
-render(filtered);
-
-}
-  
 html+=`
 
 <div class="card">
@@ -222,12 +148,15 @@ html ||
 "<div class='card'>No Attempts Found</div>";
 
 todayUsers.textContent=
+
 users.size;
 
 todayAttempts.textContent=
+
 attemptsToday;
 
 highestScore.textContent=
+
 highest;
 
 avgScore.textContent=
@@ -245,33 +174,98 @@ data.length
 }
 
 // ===========================
+// FILTER
+// ===========================
+
+function applyFilter(){
+
+const now=new Date();
+
+let filtered=[...allAttempts];
+
+switch(currentFilter){
+
+case "today":
+
+filtered=filtered.filter(item=>{
+
+const d=item.submittedAt?.toDate();
+
+return d &&
+d.toDateString()===now.toDateString();
+
+});
+
+break;
+
+case "yesterday":
+
+const y=new Date();
+
+y.setDate(y.getDate()-1);
+
+filtered=filtered.filter(item=>{
+
+const d=item.submittedAt?.toDate();
+
+return d &&
+d.toDateString()===y.toDateString();
+
+});
+
+break;
+
+case "week":
+
+filtered=filtered.filter(item=>{
+
+const d=item.submittedAt?.toDate();
+
+return d &&
+(now-d)/(1000*60*60*24)<=7;
+
+});
+
+break;
+
+case "month":
+
+filtered=filtered.filter(item=>{
+
+const d=item.submittedAt?.toDate();
+
+return d &&
+d.getMonth()===now.getMonth() &&
+d.getFullYear()===now.getFullYear();
+
+});
+
+break;
+
+}
+
+render(filtered);
+
+}
+
+// ===========================
+// SEARCH
+// ===========================
 
 searchInput.addEventListener("input",()=>{
 
-const key=
+const key=searchInput.value.trim().toLowerCase();
 
-searchInput.value
-
-.trim()
-
-.toLowerCase();
-
-const filtered=
-
-allAttempts.filter(item=>
+const filtered=allAttempts.filter(item=>
 
 (item.playerName||"")
-
 .toLowerCase()
-
 .includes(key)
 
 ||
 
 (item.testTitle||"")
-
 .toLowerCase()
-
 .includes(key)
 
 );
@@ -281,22 +275,18 @@ render(filtered);
 });
 
 // ===========================
+// FILTER BUTTONS
+// ===========================
 
-loadDashboard();
+document.querySelectorAll(".filterBtn").forEach(btn=>{
 
-document
-.querySelectorAll(".filterBtn")
-.forEach(btn=>{
+btn.addEventListener("click",()=>{
 
-btn.onclick=()=>{
-
-currentFilter=
-
-btn.dataset.filter;
+currentFilter=btn.dataset.filter;
 
 applyFilter();
 
-};
+});
 
 });
 
@@ -304,15 +294,17 @@ applyFilter();
 // LOGOUT
 // ===========================
 
-document
-.getElementById("logoutBtn")
+document.getElementById("logoutBtn")
 .addEventListener("click",()=>{
 
-sessionStorage.removeItem(
-"adminLoggedIn"
-);
+sessionStorage.removeItem("adminLoggedIn");
 
-window.location.href=
-"admin-login.html";
+window.location.href="admin-login.html";
 
 });
+
+// ===========================
+// START
+// ===========================
+
+loadDashboard();
