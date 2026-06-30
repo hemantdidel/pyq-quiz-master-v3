@@ -66,6 +66,37 @@ where("testId","==",result.testId)
 const snapshot=
 await getDocs(q);
 
+await addDoc(
+collection(db, "attempts"),
+{
+playerId: result.playerId,
+
+playerName:
+result.playerName ||
+localStorage.getItem("player_name") ||
+"Unknown",
+
+testId: result.testId,
+
+testTitle:
+result.testTitle || "",
+
+score: result.score,
+
+total: result.total,
+
+percentage: Number(
+((result.score/result.total)*100).toFixed(1)
+),
+
+attempted: result.attempted,
+
+timeTaken: result.timeTaken,
+
+submittedAt: serverTimestamp()
+}
+);
+   
 const newData={
 
 playerId:result.playerId,
@@ -76,6 +107,8 @@ localStorage.getItem("player_name") ||
 "Unknown",
 
 testId:result.testId,
+
+testTitle: result.testTitle || "",
 
 score:result.score,
 
