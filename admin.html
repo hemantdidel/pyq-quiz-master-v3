@@ -9,6 +9,7 @@
 <title>Admin Dashboard | PYQ Quiz Master</title>
 
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
 
 </head>
 
@@ -20,7 +21,7 @@
 🛠 Admin Dashboard
 </div>
 
-<div>
+<div class="header-actions">
 
 <a href="index.html" class="btn">
 🏠 Home
@@ -28,8 +29,7 @@
 
 <button
 id="logoutBtn"
-class="btn"
-style="margin-left:10px;">
+class="btn">
 
 🚪 Logout
 
@@ -42,66 +42,112 @@ style="margin-left:10px;">
 <main class="container">
 
 <h1 class="title">
-Dashboard
+📊 Dashboard
 </h1>
 
-<div class="grid">
+<!-- Stats -->
 
-<div class="card">
-<h2 id="todayUsers">0</h2>
-<p>Today's Users</p>
+<div class="stats-grid">
+
+<div class="card stat-card">
+
+<h2 id="todayUsers">
+0
+</h2>
+
+<p>
+Today's Users
+</p>
+
 </div>
 
-<div class="card">
-<h2 id="todayAttempts">0</h2>
-<p>Today's Attempts</p>
+<div class="card stat-card">
+
+<h2 id="todayAttempts">
+0
+</h2>
+
+<p>
+Today's Attempts
+</p>
+
 </div>
 
-<div class="card">
-<h2 id="avgScore">0%</h2>
-<p>Average Score</p>
+<div class="card stat-card">
+
+<h2 id="avgScore">
+0%
+</h2>
+
+<p>
+Average Score
+</p>
+
 </div>
 
-<div class="card">
-<h2 id="highestScore">0</h2>
-<p>Highest Score</p>
+<div class="card stat-card">
+
+<h2 id="highestScore">
+0
+</h2>
+
+<p>
+Highest Score
+</p>
+
 </div>
 
-<div
-style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+</div>
 
-<button class="btn filterBtn" data-filter="all">
+<!-- Filter -->
+
+<div class="filterBar">
+
+<button class="filterBtn" data-filter="all">
 All
 </button>
 
-<button class="btn filterBtn" data-filter="today">
+<button class="filterBtn" data-filter="today">
 Today
 </button>
 
-<button class="btn filterBtn" data-filter="yesterday">
+<button class="filterBtn" data-filter="yesterday">
 Yesterday
 </button>
 
-<button class="btn filterBtn" data-filter="week">
+<button class="filterBtn" data-filter="week">
 Last 7 Days
 </button>
 
-<button class="btn filterBtn" data-filter="month">
+<button class="filterBtn" data-filter="month">
 This Month
 </button>
 
 </div>
-  
-</div>
+
+<!-- Search -->
 
 <input
+
 id="searchInput"
+
 class="search"
-placeholder="Search Player...">
+
+type="text"
+
+placeholder="🔍 Search Player or Test">
+
+<!-- Attempts -->
 
 <div
-id="attemptList"
-class="grid">
+
+id="attemptList">
+
+<div class="card">
+
+Loading...
+
+</div>
 
 </div>
 
@@ -110,4 +156,5 @@ class="grid">
 <script type="module" src="js/admin.js"></script>
 
 </body>
+
 </html>
