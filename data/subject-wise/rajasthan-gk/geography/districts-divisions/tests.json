@@ -1,8 +1,8 @@
 [
   {
-    "title": "जिले एवं संभाग - Test 01",
-    "questions": 20,
-    "time": 20,
+    "title": "Test 01",
+    "questions": 15,
+    "time": 15,
     "file": "set01.json"
   }
 ]
