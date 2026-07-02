@@ -1,22 +1,49 @@
 let deferredPrompt;
 
-const installBtn = document.getElementById("installAppBtn");
+const popup = document.getElementById("installPopup");
+const installBtn = document.getElementById("installNow");
+const closeBtn = document.getElementById("closePopup");
 
+// यदि पहले से Install है तो कुछ मत दिखाओ
+if (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    localStorage.getItem("pwaInstalled") === "true"
+) {
+
+    if (popup) popup.remove();
+
+}
+
+// Chrome Install Event
 window.addEventListener("beforeinstallprompt", (e) => {
 
     e.preventDefault();
 
     deferredPrompt = e;
 
-    if (installBtn) {
-        installBtn.style.display = "inline-flex";
+    // यदि User ने पहले Later दबाया है
+    const hideUntil = localStorage.getItem("hideInstallPopupUntil");
+
+    if (hideUntil && Date.now() < Number(hideUntil)) {
+        return;
     }
+
+    setTimeout(() => {
+
+        if (popup) {
+
+            popup.style.display = "block";
+
+        }
+
+    }, 5000);
 
 });
 
+// Install Button
 if (installBtn) {
 
-    installBtn.addEventListener("click", async () => {
+    installBtn.onclick = async () => {
 
         if (!deferredPrompt) return;
 
@@ -24,22 +51,44 @@ if (installBtn) {
 
         const { outcome } = await deferredPrompt.userChoice;
 
-        console.log("Install:", outcome);
+        if (outcome === "accepted") {
+
+            localStorage.setItem("pwaInstalled", "true");
+
+        }
+
+        popup.style.display = "none";
 
         deferredPrompt = null;
 
-        installBtn.style.display = "none";
-
-    });
+    };
 
 }
 
+// Later Button
+if (closeBtn) {
+
+    closeBtn.onclick = () => {
+
+        popup.style.display = "none";
+
+        // 7 दिन तक दोबारा नहीं दिखेगा
+        const sevenDays = Date.now() + 7 * 24 * 60 * 60 * 1000;
+
+        localStorage.setItem(
+            "hideInstallPopupUntil",
+            sevenDays
+        );
+
+    };
+
+}
+
+// Install होने के बाद
 window.addEventListener("appinstalled", () => {
 
-    console.log("PWA Installed");
+    localStorage.setItem("pwaInstalled", "true");
 
-    if (installBtn) {
-        installBtn.style.display = "none";
-    }
+    if (popup) popup.remove();
 
 });
