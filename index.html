@@ -30,10 +30,9 @@ href="assets/favicon.ico">
 <link rel="stylesheet"
 href="css/style.css">
 
-<link rel="stylesheet" href="css/pwa.css">
-  
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563eb">
+<link rel="stylesheet" href="css/pwa.css">
   
 <meta property="og:title"
 content="PYQ Quiz Master">
@@ -303,32 +302,12 @@ Made with ❤️ by
 
 </footer>
 
-<script src="js/app.js"></script>
-  
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("service-worker.js")
-      .then(() => {
-        console.log("Service Worker Registered");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  });
-}
-</script>
-
 <div id="installPopup">
 
-<h3>
-📲 Install App
-</h3>
+<h3>📲 Install App</h3>
 
 <p>
-
 Install PYQ Quiz Master for a faster and full-screen experience.
-
 </p>
 
 <button id="installNow">
@@ -340,7 +319,25 @@ Later
 </button>
 
 </div>
-  
+
+<script src="js/app.js"></script>
+
+<script src="js/pwa.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js")
+      .then(() => {
+        console.log("Service Worker Registered");
+      })
+      .catch(err => {
+        console.log("Service Worker Error:", err);
+      });
+  });
+}
+</script>
+
 </body>
 
 </html>
