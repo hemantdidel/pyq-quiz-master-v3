@@ -1,5 +1,11 @@
 [
   {
+    "name": "Current Affairs",
+    "icon": "📰",
+    "description": "Daily, Monthly & Yearly Current Affairs MCQ Practice",
+    "folder": "current"
+  },
+  {
     "name": "CET",
     "icon": "🎯",
     "description": "Common Eligibility Test",
