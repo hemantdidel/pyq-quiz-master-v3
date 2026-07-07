@@ -1,1 +1,20 @@
-
+[
+  {
+    "title": "Practice Set 01",
+    "questions": 50,
+    "time": 35,
+    "file": "set01.json"
+  },
+  {
+    "title": "Practice Set 02",
+    "questions": 50,
+    "time": 35,
+    "file": "set02.json"
+  },
+  {
+    "title": "Practice Set 03",
+    "questions": 50,
+    "time": 35,
+    "file": "set03.json"
+  }
+]
