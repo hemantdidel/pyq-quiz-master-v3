@@ -1,20 +1,32 @@
 [
   {
     "title": "Practice Set 01",
-    "questions": 50,
-    "time": 35,
+    "questions": 20,
+    "time": 15,
     "file": "set01.json"
   },
   {
     "title": "Practice Set 02",
-    "questions": 50,
-    "time": 35,
+    "questions": 20,
+    "time": 15,
     "file": "set02.json"
   },
   {
     "title": "Practice Set 03",
-    "questions": 50,
-    "time": 35,
+    "questions": 20,
+    "time": 15,
     "file": "set03.json"
+  },
+  {
+    "title": "Practice Set 04",
+    "questions": 20,
+    "time": 15,
+    "file": "set04.json"
+  },
+  {
+    "title": "Practice Set 05",
+    "questions": 20,
+    "time": 15,
+    "file": "set05.json"
   }
 ]
