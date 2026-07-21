@@ -1,1 +1,112 @@
-
+[
+  {
+    "question": "Which component of the CPU performs arithmetic and logical operations? / सीपीयू का कौन सा घटक अंकगणितीय और तार्किक संचालन करता है?",
+    "options": [
+      "Control Unit (CU) / नियंत्रण इकाई",
+      "Arithmetic Logic Unit (ALU) / अंकगणितीय तर्क इकाई",
+      "Memory Unit / मेमोरी यूनिट",
+      "Input/Output Unit / इनपुट/आउटपुट इकाई"
+    ],
+    "answer": 1,
+    "explanation": "The ALU is responsible for all mathematical and logical operations in the CPU. / ALU सीपीयू में सभी गणितीय और तार्किक संचालन के लिए जिम्मेदार है।"
+  },
+  {
+    "question": "Which of the following computer memories is volatile? / निम्नलिखित में से कौन सी कंप्यूटर मेमोरी वाष्पशील (volatile) है?",
+    "options": [
+      "Random Access Memory (RAM) / रैंडम एक्सेस मेमोरी",
+      "Read-Only Memory (ROM) / रीड-ओनली मेमोरी",
+      "Hard Disk Drive (HDD) / हार्ड डिस्क ड्राइव",
+      "Compact Disc (CD) / कॉम्पैक्ट डिस्क"
+    ],
+    "answer": 0,
+    "explanation": "RAM is volatile and loses its data when the computer is turned off. / RAM वाष्पशील है और कंप्यूटर बंद होने पर अपना डेटा खो देती है।"
+  },
+  {
+    "question": "Which of the following correctly represents the sequence of the basic Data Processing Cycle? / निम्नलिखित में से कौन सा बुनियादी डेटा प्रोसेसिंग चक्र के क्रम को सही ढंग से दर्शाता है?",
+    "options": [
+      "Output -> Processing -> Input / आउटपुट -> प्रोसेसिंग -> इनपुट",
+      "Processing -> Input -> Output / प्रोसेसिंग -> इनपुट -> आउटपुट",
+      "Input -> Processing -> Output / इनपुट -> प्रोसेसिंग -> आउटपुट",
+      "Input -> Output -> Processing / इनपुट -> आउटपुट -> प्रोसेसिंग"
+    ],
+    "answer": 2,
+    "explanation": "The standard data processing cycle consists of Input, Processing, and Output. / मानक डेटा प्रोसेसिंग चक्र में इनपुट, प्रोसेसिंग और आउटपुट शामिल होते हैं।"
+  },
+  {
+    "question": "Which of the following acts as an interface between the user and the computer hardware? / निम्नलिखित में से कौन उपयोगकर्ता और कंप्यूटर हार्डवेयर के बीच एक इंटरफ़ेस के रूप में कार्य करता है?",
+    "options": [
+      "Compiler / कंपाइलर",
+      "Utility Program / यूटिलिटी प्रोग्राम",
+      "Application Software / एप्लिकेशन सॉफ्टवेयर",
+      "Operating System (OS) / ऑपरेटिंग सिस्टम (OS)"
+    ],
+    "answer": 3,
+    "explanation": "An Operating System is system software that manages hardware and software resources. / ऑपरेटिंग सिस्टम सिस्टम सॉफ्टवेयर है जो हार्डवेयर और सॉफ्टवेयर संसाधनों का प्रबंधन करता है।"
+  },
+  {
+    "question": "How many bits are there in a single byte? / एक बाइट में कितने बिट्स होते हैं?",
+    "options": [
+      "4 bits / 4 बिट्स",
+      "8 bits / 8िट्स",
+      "12 bits / 12 बिट्स",
+      "16 bits / 16 बिट्स"
+    ],
+    "answer": 1,
+    "explanation": "A byte is a unit of digital information that consists of 8 bits. / बाइट डिजिटल जानकारी की एक इकाई है जिसमें 8 बिट्स होते हैं।"
+  },
+  {
+    "question": "Which of the following is an input device? / निम्नलिखित में से कौन सा इनपुट डिवाइस है?",
+    "options": [
+      "Monitor / मॉनिटर",
+      "Printer / प्रिंटर",
+      "Keyboard / कीबोर्ड",
+      "Speaker / स्पीकर"
+    ],
+    "answer": 2,
+    "explanation": "A keyboard is used to enter data into the computer, making it an input device. / कीबोर्ड का उपयोग कंप्यूटर में डेटा दर्ज करने के लिए किया जाता है, जिससे यह एक इनपुट डिवाइस बन जाता है।"
+  },
+  {
+    "question": "Which of the following is an example of magnetic storage? / निम्नलिखित में से कौन सा चुंबकीय भंडारण (magnetic storage) का उदाहरण है?",
+    "options": [
+      "Hard Disk Drive (HDD) / हार्ड डिस्क ड्राइव",
+      "Solid State Drive (SSD) / सॉलिड स्टेट ड्राइव",
+      "Compact Disc (CD) / कॉम्पैक्ट डिस्क",
+      "Random Access Memory (RAM) / रैंडम एक्सेस मेमोरी"
+    ],
+    "answer": 0,
+    "explanation": "Hard Disk Drives use magnetic platters to store data. / हार्ड डिस्क ड्राइव डेटा संग्रहीत करने के लिए चुंबकीय प्लेटर्स का उपयोग करती हैं।"
+  },
+  {
+    "question": "MS Word is an example of which type of software? / MS Word किस प्रकार के सॉफ़्टवेयर का उदाहरण है?",
+    "options": [
+      "System Software / सिस्टम सॉफ्टवेयर",
+      "Operating System / ऑपरेटिंग सिस्टम",
+      "Utility Software / यूटिलिटी सॉफ्टवेयर",
+      "Application Software / एप्लिकेशन सॉफ्टवेयर"
+    ],
+    "answer": 3,
+    "explanation": "MS Word is application software designed to help users perform specific tasks like typing documents. / MS Word एप्लिकेशन सॉफ़्टवेयर है जिसे उपयोगकर्ताओं को दस्तावेज़ टाइप करने जैसे विशिष्ट कार्य करने में मदद करने के लिए डिज़ाइन किया गया है।"
+  },
+  {
+    "question": "The speed of a computer's CPU is typically measured in which unit? / कंप्यूटर के CPU की गति आमतौर पर किस इकाई में मापी जाती है?",
+    "options": [
+      "Megabytes (MB) / मेगाबाइट्स",
+      "Hertz (Hz) / हर्ट्ज़",
+      "Bits per second (bps) / बिट्स प्रति सेकंड",
+      "Volts (V) / वोल्ट"
+    ],
+    "answer": 1,
+    "explanation": "CPU clock speed is measured in Hertz (usually GHz), indicating cycles per second. / सीपीयू क्लॉक स्पीड हर्ट्ज़ (आमतौर पर गीगाहर्ट्ज़) में मापी जाती है, जो प्रति सेकंड चक्रों को इंगित करती है।"
+  },
+  {
+    "question": "Which memory is located directly inside the CPU for extremely fast data access? / अत्यंत तेज़ डेटा एक्सेस के लिए कौन सी मेमोरी सीधे CPU के अंदर स्थित होती है?",
+    "options": [
+      "Main Memory / मेन मेमोरी",
+      "Hard Disk / हार्ड डिस्क",
+      "Cache Memory / कैश मेमोरी",
+      "Virtual Memory / वर्चुअल मेमोरी"
+    ],
+    "answer": 2,
+    "explanation": "Cache memory is a smaller, faster memory located closer to the processor core. / कैश मेमोरी एक छोटी, तेज़ मेमोरी होती है जो प्रोसेसर कोर के करीब स्थित होती है।"
+  }
+]
