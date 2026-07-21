@@ -1,0 +1,112 @@
+[
+  {
+    "question": "The process of starting or restarting a computer is known as? / कंप्यूटर को शुरू करने या पुनरारंभ करने की प्रक्रिया को क्या कहा जाता है?",
+    "options": [
+      "Booting / बूटिंग",
+      "Compiling / कंपाइलिंग",
+      "Formatting / फॉर्मेटिंग",
+      "Executing / निष्पादन (Executing)"
+    ],
+    "answer": 0,
+    "explanation": "Booting is the initialization of the computerized system. / बूटिंग कम्प्यूटरीकृत प्रणाली का आरंभीकरण है।"
+  },
+  {
+    "question": "First generation computers used which technology? / प्रथम पीढ़ी के कंप्यूटरों में किस तकनीक का उपयोग किया जाता था?",
+    "options": [
+      "Transistors / ट्रांजिस्टर",
+      "Integrated Circuits (ICs) / इंटीग्रेटेड सर्किट्स",
+      "Microprocessors / माइक्रोप्रोसेसर",
+      "Vacuum Tubes / वैक्यूम ट्यूब"
+    ],
+    "answer": 3,
+    "explanation": "First-generation computers relied on vacuum tubes for circuitry and magnetic drums for memory. / प्रथम-पीढ़ी के कंप्यूटर सर्किटरी के लिए वैक्यूम ट्यूब और मेमोरी के लिए चुंबकीय ड्रम पर निर्भर थे।"
+  },
+  {
+    "question": "The binary number system uses a base of? / बाइनरी नंबर सिस्टम का आधार (base) क्या होता है?",
+    "options": [
+      "10 / 10",
+      "2 / 2",
+      "8 / 8",
+      "16 / 16"
+    ],
+    "answer": 1,
+    "explanation": "The binary system is a base-2 number system that uses only 0 and 1. / बाइनरी सिस्टम एक आधार-2 संख्या प्रणाली है जो केवल 0 और 1 का उपयोग करती है।"
+  },
+  {
+    "question": "Which of the following file extensions typically indicates a plain text file? / निम्नलिखित में से कौन सा फ़ाइल एक्सटेंशन आमतौर पर एक सादे टेक्स्ट फ़ाइल को इंगित करता है?",
+    "options": [
+      ".exe / .exe",
+      ".docx / .docx",
+      ".txt / .txt",
+      ".jpg / .jpg"
+    ],
+    "answer": 2,
+    "explanation": ".txt is the standard extension for files containing plain unformatted text. / .txt सादे बिना स्वरूपित टेक्स्ट वाले फ़ाइलों के लिए मानक एक्सटेंशन है।"
+  },
+  {
+    "question": "Which device is primarily used to connect multiple computers together to form a Local Area Network (LAN)? / मुख्य रूप से लोकल एरिया नेटवर्क (LAN) बनाने के लिए कई कंप्यूटरों को एक साथ जोड़ने के लिए किस उपकरण का उपयोग किया जाता है?",
+    "options": [
+      "Router / राउटर",
+      "Switch / स्विच",
+      "Modem / मोडेम",
+      "Repeater / रिपीटर"
+    ],
+    "answer": 1,
+    "explanation": "A network switch is a device that connects devices together on a computer network. / नेटवर्क स्विच एक उपकरण है जो कंप्यूटर नेटवर्क पर उपकरणों को एक साथ जोड़ता है।"
+  },
+  {
+    "question": "What is a computer worm? / कंप्यूटर वर्म (Worm) क्या है?",
+    "options": [
+      "A fast hardware component / एक तेज़ हार्डवेयर घटक",
+      "A protective antivirus tool / एक सुरक्षात्मक एंटीवायरस टूल",
+      "A program to speed up internet / इंटरनेट की गति बढ़ाने का प्रोग्राम",
+      "A type of malware that replicates itself to spread to other computers / मैलवेयर का एक प्रकार जो अन्य कंप्यूटरों में फैलने के लिए खुद की नकल करता है"
+    ],
+    "answer": 3,
+    "explanation": "A computer worm is standalone malware that replicates itself in order to spread to other computers. / कंप्यूटर वर्म स्टैंडअलोन मैलवेयर है जो अन्य कंप्यूटरों में फैलने के लिए खुद की नकल करता है।"
+  },
+  {
+    "question": "Disk Cleanup is an example of which type of software? / डिस्क क्लीनअप (Disk Cleanup) किस प्रकार के सॉफ़्टवेयर का उदाहरण है?",
+    "options": [
+      "Application Software / एप्लिकेशन सॉफ्टवेयर",
+      "Utility Software / यूटिलिटी सॉफ्टवेयर",
+      "Operating System / ऑपरेटिंग सिस्टम",
+      "Programming Language / प्रोग्रामिंग भाषा"
+    ],
+    "answer": 1,
+    "explanation": "Disk Cleanup is a utility software used to manage and optimize computer storage. / डिस्क क्लीनअप एक यूटिलिटी सॉफ़्टवेयर है जिसका उपयोग कंप्यूटर स्टोरेज के प्रबंधन और अनुकूलन के लिए किया जाता है।"
+  },
+  {
+    "question": "Which component of the CPU holds the data that the CPU is currently processing? / सीपीयू का कौन सा घटक उस डेटा को रखता है जिसे सीपीयू वर्तमान में प्रोसेस कर रहा है?",
+    "options": [
+      "Hard Disk / हार्ड डिस्क",
+      "RAM / रैम",
+      "Registers / रजिस्टर",
+      "Cache / कैश"
+    ],
+    "answer": 2,
+    "explanation": "Registers are the smallest, fastest data holding locations inside the CPU. / रजिस्टर सीपीयू के अंदर सबसे छोटे और सबसे तेज़ डेटा रखने वाले स्थान होते हैं।"
+  },
+  {
+    "question": "Which of these is a permanent, non-volatile storage device? / इनमें से कौन सा स्थायी, गैर-वाष्पशील भंडारण उपकरण है?",
+    "options": [
+      "Hard Disk Drive (HDD) / हार्ड डिस्क ड्राइव",
+      "RAM / रैम",
+      "Cache / कैश",
+      "CPU Registers / सीपीयू रजिस्टर"
+    ],
+    "answer": 0,
+    "explanation": "An HDD retains all data even when the computer is powered down. / कंप्यूटर बंद होने पर भी HDD सारा डेटा सुरक्षित रखता है।"
+  },
+  {
+    "question": "Windows, macOS, and Linux are examples of? / विंडोज़, मैक ओएस (macOS) और लिनक्स (Linux) किसके उदाहरण हैं?",
+    "options": [
+      "Web Browsers / वेब ब्राउज़र",
+      "Utility Software / यूटिलिटी सॉफ्टवेयर",
+      "Application Software / एप्लिकेशन सॉफ्टवेयर",
+      "Operating Systems / ऑपरेटिंग सिस्टम"
+    ],
+    "answer": 3,
+    "explanation": "Operating systems are the primary programs that manage all other applications and hardware resources. / ऑपरेटिंग सिस्टम प्राथमिक प्रोग्राम हैं जो अन्य सभी एप्लिकेशन और हार्डवेयर संसाधनों का प्रबंधन करते हैं।"
+  }
+]
